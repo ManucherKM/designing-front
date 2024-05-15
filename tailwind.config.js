@@ -16,6 +16,11 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      dsa: { max: "1070px" },
+      tb_sm: { max: "834px" },
+      ph_lg: { max: "640px" },
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

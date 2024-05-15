@@ -40,7 +40,7 @@ export const tabList: ITabListItem[] = [
 
 export const Tabs = () => {
 	return (
-		<div className="max-w-[1250px] mx-auto p-10">
+		<div className="max-w-[1250px] mx-auto p-10 ph_lg:p-4">
 			<UiTabs defaultValue="scanning">
 				<TabsList
 					className="grid w-full"
@@ -51,14 +51,18 @@ export const Tabs = () => {
 					<List
 						arr={tabList}
 						callback={tab => (
-							<TabsTrigger value={tab.value}>{tab.text}</TabsTrigger>
+							<TabsTrigger key={'tab-' + tab.value} value={tab.value}>
+								{tab.text}
+							</TabsTrigger>
 						)}
 					/>
 				</TabsList>
 				<List
 					arr={tabList}
 					callback={tab => (
-						<TabsContent value={tab.value}>{tab.content}</TabsContent>
+						<TabsContent key={tab.value} value={tab.value}>
+							{tab.content}
+						</TabsContent>
 					)}
 				/>
 			</UiTabs>

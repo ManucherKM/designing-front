@@ -17,7 +17,7 @@ export const Scanning = () => {
 		<Card className="w-full">
 			<CardHeader></CardHeader>
 			<CardContent>
-				<div className="grid w-full grid-cols-3 gap-5">
+				<div className="grid w-full grid-cols-3 gap-5 ph_lg:grid-cols-none">
 					<div className="flex flex-col">
 						<span className="text-center">Размеры детали</span>
 						<div className="flex flex-col gap-5 mt-5">

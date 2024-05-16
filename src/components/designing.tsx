@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { TypographyH2 } from './typographyH2'
+import { Checkbox } from './ui/checkbox'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import {
@@ -12,7 +13,7 @@ import {
 	SelectValue,
 } from './ui/select'
 
-export const Scanning = () => {
+export const Designing = () => {
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>
@@ -54,33 +55,45 @@ export const Scanning = () => {
 									</SelectContent>
 								</Select>
 							</div>
-							<div className="flex flex-col gap-2">
-								<Label>Поверхность</Label>
-								<Select defaultValue="shiny">
-									<SelectTrigger>
-										<SelectValue placeholder="Выберите значение" />
-									</SelectTrigger>
-									<SelectContent>
-										<SelectGroup>
-											<SelectItem value="shiny">Блестящая</SelectItem>
-											<SelectItem value="matte">Матовая</SelectItem>
-										</SelectGroup>
-									</SelectContent>
-								</Select>
+							<div className="w-full grid grid-cols-2 gap-2">
+								<div className="flex flex-col gap-2">
+									<Label>Технология</Label>
+									<Select defaultValue="fdm">
+										<SelectTrigger>
+											<SelectValue placeholder="Выберите значение" />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectGroup>
+												<SelectItem value="fdm">ФДМ</SelectItem>
+												<SelectItem value="photopolymer">
+													Фотополимер
+												</SelectItem>
+											</SelectGroup>
+										</SelectContent>
+									</Select>
+								</div>
+								<div className="flex flex-col gap-2">
+									<Label>Назначение</Label>
+									<Select defaultValue="layout">
+										<SelectTrigger>
+											<SelectValue placeholder="Выберите значение" />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectGroup>
+												<SelectItem value="layout">Макет</SelectItem>
+												<SelectItem value="artistic">Художественное</SelectItem>
+												<SelectItem value="technical">Техническое</SelectItem>
+											</SelectGroup>
+										</SelectContent>
+									</Select>
+								</div>
 							</div>
-							<div className="flex flex-col gap-2">
-								<Label>Точность сканирования</Label>
-								<Select defaultValue="normal">
-									<SelectTrigger>
-										<SelectValue placeholder="Выберите значение" />
-									</SelectTrigger>
-									<SelectContent>
-										<SelectGroup>
-											<SelectItem value="normal">0.1</SelectItem>
-											<SelectItem value="greater">0.063</SelectItem>
-										</SelectGroup>
-									</SelectContent>
-								</Select>
+
+							<div className="mt-[22px] h-9 flex items-center">
+								<div className="flex gap-2 items-center">
+									<Checkbox id="post-processing" />
+									<Label htmlFor="post-processing">Постобработка</Label>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -88,7 +101,7 @@ export const Scanning = () => {
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
 							<TypographyH2 className="text-center border-none">
-								13 800,05 ₽
+								9 300 ₽
 							</TypographyH2>
 						</div>
 					</div>

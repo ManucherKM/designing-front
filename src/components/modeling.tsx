@@ -12,7 +12,14 @@ import {
 	SelectValue,
 } from './ui/select'
 
-export const Scanning = () => {
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from '@/components/ui/popover'
+import { Checkbox } from './ui/checkbox'
+
+export const Modeling = () => {
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>
@@ -55,32 +62,56 @@ export const Scanning = () => {
 								</Select>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label>Поверхность</Label>
-								<Select defaultValue="shiny">
+								<Label>Тип модели</Label>
+								<Select defaultValue="artistic">
 									<SelectTrigger>
 										<SelectValue placeholder="Выберите значение" />
 									</SelectTrigger>
 									<SelectContent>
 										<SelectGroup>
-											<SelectItem value="shiny">Блестящая</SelectItem>
-											<SelectItem value="matte">Матовая</SelectItem>
+											<SelectItem value="artistic">Художественный</SelectItem>
+											<SelectItem value="engineering">Инженерный</SelectItem>
 										</SelectGroup>
 									</SelectContent>
 								</Select>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label>Точность сканирования</Label>
-								<Select defaultValue="normal">
-									<SelectTrigger>
-										<SelectValue placeholder="Выберите значение" />
-									</SelectTrigger>
-									<SelectContent>
-										<SelectGroup>
-											<SelectItem value="normal">0.1</SelectItem>
-											<SelectItem value="greater">0.063</SelectItem>
-										</SelectGroup>
-									</SelectContent>
-								</Select>
+								<Popover>
+									<PopoverTrigger asChild>
+										<div className="flex flex-col gap-2">
+											<Label>Проектирование</Label>
+											<Button variant="outline">Нажмите чтобы раскрыть</Button>
+										</div>
+									</PopoverTrigger>
+									<PopoverContent className="w-120">
+										<div className="grid gap-4">
+											<div className="space-y-2">
+												<h4 className="font-medium leading-none">
+													Проектирование
+												</h4>
+												<p className="text-sm text-muted-foreground">
+													Выберите необходимые работы
+												</p>
+											</div>
+											<div className="flex flex-col gap-5">
+												<div className="flex gap-2 items-center">
+													<Checkbox id="docs" />
+													<Label htmlFor="docs">
+														Подготовка конструкторской документации
+													</Label>
+												</div>
+												<div className="flex gap-2 items-center">
+													<Checkbox id="visualization" />
+													<Label htmlFor="visualization">Визуализация</Label>
+												</div>
+												<div className="flex gap-2 items-center">
+													<Checkbox id="animation" />
+													<Label htmlFor="animation">Анимация</Label>
+												</div>
+											</div>
+										</div>
+									</PopoverContent>
+								</Popover>
 							</div>
 						</div>
 					</div>
@@ -88,7 +119,7 @@ export const Scanning = () => {
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
 							<TypographyH2 className="text-center border-none">
-								13 800,05 ₽
+								12 500,08 ₽
 							</TypographyH2>
 						</div>
 					</div>

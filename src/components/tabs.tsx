@@ -5,7 +5,9 @@ import {
 	Tabs as UiTabs,
 } from '@/components/ui/tabs'
 import { ReactNode } from 'react'
+import { Designing } from './designing'
 import { List } from './list'
+import { Modeling } from './modeling'
 import { Scanning } from './scanning'
 
 export enum ETabListItemValues {
@@ -29,12 +31,12 @@ export const tabList: ITabListItem[] = [
 	{
 		value: ETabListItemValues.designing,
 		text: 'Проектирование',
-		content: 2,
+		content: <Designing />,
 	},
 	{
 		value: ETabListItemValues.modeling,
 		text: 'Моделирование',
-		content: 3,
+		content: <Modeling />,
 	},
 ]
 

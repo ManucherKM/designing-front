@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { TypographyH2 } from './typographyH2'
+import { TypographyH2 } from './typography-h2'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import {

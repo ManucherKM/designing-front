@@ -64,7 +64,7 @@ export const Designing = () => {
 										</SelectTrigger>
 										<SelectContent>
 											<SelectGroup>
-												<SelectItem value="fdm">ФДМ</SelectItem>
+												<SelectItem value="fdm">FDM</SelectItem>
 												<SelectItem value="photopolymer">
 													Фотополимер
 												</SelectItem>
@@ -89,10 +89,13 @@ export const Designing = () => {
 								</div>
 							</div>
 
-							<div className="mt-[22px] h-9 flex items-center">
-								<div className="flex gap-2 items-center">
-									<Checkbox id="post-processing" />
-									<Label htmlFor="post-processing">Постобработка</Label>
+							<div className="flex flex-col gap-2">
+								<Label>Ещё</Label>
+								<div className="flex h-9">
+									<div className="flex gap-2 items-center">
+										<Checkbox id="post-processing" />
+										<Label htmlFor="post-processing">Постобработка</Label>
+									</div>
 								</div>
 							</div>
 						</div>

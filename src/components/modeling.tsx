@@ -79,7 +79,7 @@ export const Modeling = () => {
 								<Popover>
 									<PopoverTrigger asChild>
 										<div className="flex flex-col gap-2">
-											<Label>Проектирование</Label>
+											<Label>Ещё</Label>
 											<Button variant="outline">Нажмите чтобы раскрыть</Button>
 										</div>
 									</PopoverTrigger>
@@ -87,7 +87,7 @@ export const Modeling = () => {
 										<div className="grid gap-4">
 											<div className="space-y-2">
 												<h4 className="font-medium leading-none">
-													Проектирование
+													Дополнительные функции
 												</h4>
 												<p className="text-sm text-muted-foreground">
 													Выберите необходимые работы

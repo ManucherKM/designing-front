@@ -30,7 +30,7 @@ export const tabList: ITabListItem[] = [
 	},
 	{
 		value: ETabListItemValues.designing,
-		text: 'Проектирование',
+		text: '3D-Печать',
 		content: <Designing />,
 	},
 	{

@@ -15,31 +15,38 @@ export const AdminDialog = () => {
 	return (
 		<Dialog open={true} onOpenChange={() => {}}>
 			<DialogTrigger asChild>
-				<Button variant="outline">Edit Profile</Button>
+				<Button variant="outline">Вход в админку</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px] rounded-lg">
 				<DialogHeader>
-					<DialogTitle>Edit profile</DialogTitle>
-					<DialogDescription>
-						Make changes to your profile here. Click save when you're done.
+					<DialogTitle className="text-left">Вход в админку</DialogTitle>
+					<DialogDescription className="text-justify !mt-3">
+						Данный раздел разработан исключительно для администраторов сервиса.
+						Если вы им не являетесь, настоятельно просим покинуть данный раздел.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
-					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="name" className="text-right">
-							Name
-						</Label>
-						<Input id="name" value="Pedro Duarte" className="col-span-3" />
+					<div className="flex flex-col gap-2">
+						<Label htmlFor="login">Логин</Label>
+						<Input
+							id="login"
+							value=""
+							className="col-span-3"
+							placeholder="Ваш логин"
+						/>
 					</div>
-					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="username" className="text-right">
-							Username
-						</Label>
-						<Input id="username" value="@peduarte" className="col-span-3" />
+					<div className="flex flex-col gap-2">
+						<Label htmlFor="password">Пароль</Label>
+						<Input
+							id="password"
+							value=""
+							placeholder="Ваш пароль"
+							className="col-span-3"
+						/>
 					</div>
 				</div>
 				<DialogFooter>
-					<Button type="submit">Save changes</Button>
+					<Button type="submit">Войти</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

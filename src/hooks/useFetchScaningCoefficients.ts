@@ -6,9 +6,9 @@ import { useLoader } from './useLoader'
 
 export const useFetchScaningCoefficients = () => {
 	try {
-		const [coefficients, setCoefficients] = useState<
-			IScanningCoefficients | undefined
-		>()
+		const savedCoefficients = useScaningStore(store => store.coefficients)
+
+		const [coefficients, setCoefficients] = useState<IScanningCoefficients>()
 
 		const getCurrent = useScaningStore(store => store.getCurrent)
 
@@ -19,10 +19,16 @@ export const useFetchScaningCoefficients = () => {
 		useEffect(() => {
 			const fetchCoefficients = async () => {
 				try {
-					const coefficients = await loader(getCurrent)
+					let coefficients
+
+					if (savedCoefficients === null) {
+						coefficients = await loader(getCurrent)
+					} else {
+						coefficients = await getCurrent()
+					}
 
 					if (!coefficients) {
-						return
+						throw new Error('Unexpected server error')
 					}
 
 					setCoefficients(coefficients)

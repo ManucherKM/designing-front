@@ -1,4 +1,5 @@
 export interface IScaningStore {
+	coefficients: IScanningCoefficients | null
 	getCurrent(): Promise<IScanningCoefficients | undefined>
 }
 

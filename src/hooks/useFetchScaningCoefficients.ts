@@ -34,7 +34,8 @@ export const useFetchScaningCoefficients = () => {
 					setCoefficients(coefficients)
 				} catch (e: any) {
 					toast({
-						title: 'Не удалось получить коэффициенты для расчета стоимости сканирования',
+						title:
+							'Не удалось получить коэффициенты для расчета стоимости сканирования',
 						description: e.message,
 					})
 				}

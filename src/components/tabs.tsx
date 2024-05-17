@@ -1,4 +1,9 @@
-import { TabsContent, TabsList, TabsTrigger, Tabs as UiTabs } from '@/components/ui/tabs'
+import {
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+	Tabs as UiTabs,
+} from '@/components/ui/tabs'
 import { ReactNode } from 'react'
 import { Designing } from './designing'
 import { List } from './list'

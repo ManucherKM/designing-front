@@ -8,7 +8,9 @@ export const useFetchDesigningCoefficients = () => {
 	try {
 		const savedCoefficients = useDesigningStore(store => store.coefficients)
 
-		const [coefficients, setCoefficients] = useState<IDesigningCoefficients | undefined>()
+		const [coefficients, setCoefficients] = useState<
+			IDesigningCoefficients | undefined
+		>()
 
 		const getCurrent = useDesigningStore(store => store.getCurrent)
 
@@ -34,7 +36,8 @@ export const useFetchDesigningCoefficients = () => {
 					setCoefficients(coefficients)
 				} catch (e: any) {
 					toast({
-						title: 'Не удалось получить коэффициенты для расчета стоимости 3D печати',
+						title:
+							'Не удалось получить коэффициенты для расчета стоимости 3D печати',
 						description: e.message,
 					})
 				}

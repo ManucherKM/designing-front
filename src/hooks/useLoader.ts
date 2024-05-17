@@ -14,7 +14,10 @@ export function useLoader() {
 
 	// Return the cached function.
 	return useCallback(
-		async function <T, A extends unknown[]>(fetch: (...args: A) => Promise<T>, ...args: A) {
+		async function <T, A extends unknown[]>(
+			fetch: (...args: A) => Promise<T>,
+			...args: A
+		) {
 			try {
 				// Show the user Loader.
 				setLoading(true)

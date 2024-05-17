@@ -19,7 +19,11 @@ export interface IAdminDialog {
 	open: DialogProps['open']
 }
 
-export const AdminDialog: FC<IAdminDialog> = ({ children, onOpenChange, open }) => {
+export const AdminDialog: FC<IAdminDialog> = ({
+	children,
+	onOpenChange,
+	open,
+}) => {
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogTrigger asChild>{children}</DialogTrigger>
@@ -27,8 +31,8 @@ export const AdminDialog: FC<IAdminDialog> = ({ children, onOpenChange, open }) 
 				<DialogHeader>
 					<DialogTitle className="text-left">Вход в админку</DialogTitle>
 					<DialogDescription className="text-justify !mt-3">
-						Данный раздел разработан исключительно для администраторов сервиса. Если вы им не являетесь, настоятельно
-						просим покинуть данный раздел.
+						Данный раздел разработан исключительно для администраторов сервиса.
+						Если вы им не являетесь, настоятельно просим покинуть данный раздел.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -38,7 +42,11 @@ export const AdminDialog: FC<IAdminDialog> = ({ children, onOpenChange, open }) 
 					</div>
 					<div className="flex flex-col gap-2">
 						<Label htmlFor="password">Пароль</Label>
-						<Input id="password" placeholder="Ваш пароль" className="col-span-3" />
+						<Input
+							id="password"
+							placeholder="Ваш пароль"
+							className="col-span-3"
+						/>
 					</div>
 				</div>
 				<DialogFooter>

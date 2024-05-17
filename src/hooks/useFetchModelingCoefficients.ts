@@ -8,7 +8,9 @@ export const useFetchModelingCoefficients = () => {
 	try {
 		const savedCoefficients = useModelingStore(store => store.coefficients)
 
-		const [coefficients, setCoefficients] = useState<IModelingCoefficients | undefined>()
+		const [coefficients, setCoefficients] = useState<
+			IModelingCoefficients | undefined
+		>()
 
 		const getCurrent = useModelingStore(store => store.getCurrent)
 
@@ -34,7 +36,8 @@ export const useFetchModelingCoefficients = () => {
 					setCoefficients(coefficients)
 				} catch (e: any) {
 					toast({
-						title: 'Не удалось получить коэффициенты для расчета стоимости моделирования',
+						title:
+							'Не удалось получить коэффициенты для расчета стоимости моделирования',
 						description: e.message,
 					})
 				}

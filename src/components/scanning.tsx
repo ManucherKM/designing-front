@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { useFetchScaningCoefficients } from '@/hooks'
 import { TypographyH2 } from './typography-h2'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
@@ -13,6 +14,8 @@ import {
 } from './ui/select'
 
 export const Scanning = () => {
+	const coefficients = useFetchScaningCoefficients()
+
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>

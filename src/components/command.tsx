@@ -27,13 +27,6 @@ export const Command = () => {
 		return () => document.removeEventListener('keydown', down)
 	}, [])
 
-	useEffect(() => {
-		console.log(openAdminDialog)
-	}, [openAdminDialog])
-
-	useEffect(() => {
-		console.log('render')
-	}, [])
 	return (
 		<CommandDialog open={open} onOpenChange={setOpen}>
 			<CommandInput placeholder="Введите команду для поиска..." />

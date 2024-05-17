@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useCalculateCostScaning, useFetchScaningCoefficients } from '@/hooks'
 import { useEffect, useState } from 'react'
 import { TypographyH2 } from './typography-h2'
+import { TypographyH3 } from './typography-h3'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import {
@@ -171,11 +172,15 @@ export const Scanning = () => {
 					<div className="flex flex-col">
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
-							<TypographyH2 className="text-center border-none">
-								{cost === undefined
-									? 'Введите данные для расчета стоимости'
-									: cost + ' ₽'}
-							</TypographyH2>
+							{cost === undefined ? (
+								<TypographyH3 className="text-center border-none">
+									Введите данные для расчета стоимости
+								</TypographyH3>
+							) : (
+								<TypographyH2 className="text-center border-none">
+									{cost} ₽
+								</TypographyH2>
+							)}
 						</div>
 					</div>
 				</div>

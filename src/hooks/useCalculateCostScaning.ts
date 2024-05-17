@@ -1,5 +1,6 @@
 import { IScanningFormData } from '@/components/scanning'
 import { useScaningStore } from '@/storage'
+import { getNumberWithSpaces, getNumberWithoutZeroes } from '@/utils'
 import { useEffect, useState } from 'react'
 
 export const useCalculateCostScaning = (data: IScanningFormData) => {
@@ -49,5 +50,7 @@ export const useCalculateCostScaning = (data: IScanningFormData) => {
 		)
 	}, [data, coefficients])
 
-	return cost?.toFixed(2)
+	if (!cost) return
+
+	return getNumberWithSpaces(getNumberWithoutZeroes(cost))
 }

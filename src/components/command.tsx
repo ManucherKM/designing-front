@@ -9,9 +9,11 @@ import {
 	CommandList,
 } from '@/components/ui/command'
 import { useEffect, useState } from 'react'
+import { AdminDialog } from './admin-dialog'
 
 export const Command = () => {
 	const [open, setOpen] = useState(false)
+	const [openAdminDialog, setOpenAdminDialog] = useState(false)
 
 	useEffect(() => {
 		const down = (e: KeyboardEvent) => {
@@ -25,6 +27,13 @@ export const Command = () => {
 		return () => document.removeEventListener('keydown', down)
 	}, [])
 
+	useEffect(() => {
+		console.log(openAdminDialog)
+	}, [openAdminDialog])
+
+	useEffect(() => {
+		console.log('render')
+	}, [])
 	return (
 		<CommandDialog open={open} onOpenChange={setOpen}>
 			<CommandInput placeholder="Введите команду для поиска..." />
@@ -32,8 +41,17 @@ export const Command = () => {
 				<CommandEmpty>Ничего не найдено.</CommandEmpty>
 				<CommandGroup heading="Возможности">
 					<CommandItem>
-						<UserCog className="mr-2 h-4 w-4" />
-						<span>Админка</span>
+						<AdminDialog
+							open={openAdminDialog}
+							onOpenChange={open => {
+								setOpenAdminDialog(open)
+							}}
+						>
+							<div className="flex w-full">
+								<UserCog className="mr-2 h-4 w-4" />
+								<span>Админка</span>
+							</div>
+						</AdminDialog>
 					</CommandItem>
 					<CommandItem onSelect={() => location.reload()}>
 						<RotateCcw className="mr-2 h-4 w-4" />

@@ -1,4 +1,5 @@
 export interface IDesigningStore {
+	coefficients: IDesigningCoefficients | null
 	getCurrent(): Promise<IDesigningCoefficients | undefined>
 }
 

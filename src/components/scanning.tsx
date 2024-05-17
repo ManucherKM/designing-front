@@ -4,14 +4,7 @@ import { useFetchScaningCoefficients } from '@/hooks'
 import { TypographyH2 } from './typography-h2'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from './ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 
 export const Scanning = () => {
 	const coefficients = useFetchScaningCoefficients()
@@ -90,9 +83,7 @@ export const Scanning = () => {
 					<div className="flex flex-col">
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
-							<TypographyH2 className="text-center border-none">
-								13 800,05 ₽
-							</TypographyH2>
+							<TypographyH2 className="text-center border-none">13 800,05 ₽</TypographyH2>
 						</div>
 					</div>
 				</div>

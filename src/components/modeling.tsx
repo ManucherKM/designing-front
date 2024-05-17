@@ -3,20 +3,9 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { TypographyH2 } from './typography-h2'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from './ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '@/components/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { useFetchModelingCoefficients } from '@/hooks'
 import { useEffect } from 'react'
 import { Checkbox } from './ui/checkbox'
@@ -93,19 +82,13 @@ export const Modeling = () => {
 									<PopoverContent className="w-120">
 										<div className="grid gap-4">
 											<div className="space-y-2">
-												<h4 className="font-medium leading-none">
-													Дополнительные функции
-												</h4>
-												<p className="text-sm text-muted-foreground">
-													Выберите необходимые работы
-												</p>
+												<h4 className="font-medium leading-none">Дополнительные функции</h4>
+												<p className="text-sm text-muted-foreground">Выберите необходимые работы</p>
 											</div>
 											<div className="flex flex-col gap-5">
 												<div className="flex gap-2 items-center">
 													<Checkbox id="docs" />
-													<Label htmlFor="docs">
-														Подготовка конструкторской документации
-													</Label>
+													<Label htmlFor="docs">Подготовка конструкторской документации</Label>
 												</div>
 												<div className="flex gap-2 items-center">
 													<Checkbox id="visualization" />
@@ -125,9 +108,7 @@ export const Modeling = () => {
 					<div className="flex flex-col">
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
-							<TypographyH2 className="text-center border-none">
-								12 500,08 ₽
-							</TypographyH2>
+							<TypographyH2 className="text-center border-none">12 500,08 ₽</TypographyH2>
 						</div>
 					</div>
 				</div>

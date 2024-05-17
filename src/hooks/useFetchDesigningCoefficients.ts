@@ -6,9 +6,9 @@ import { useLoader } from './useLoader'
 
 export const useFetchDesigningCoefficients = () => {
 	try {
-		const [coefficients, setCoefficients] = useState<
-			IDesigningCoefficients | undefined
-		>()
+		const savedCoefficients = useDesigningStore(store => store.coefficients)
+
+		const [coefficients, setCoefficients] = useState<IDesigningCoefficients | undefined>()
 
 		const getCurrent = useDesigningStore(store => store.getCurrent)
 
@@ -19,17 +19,22 @@ export const useFetchDesigningCoefficients = () => {
 		useEffect(() => {
 			const fetchCoefficients = async () => {
 				try {
-					const coefficients = await loader(getCurrent)
+					let coefficients
+
+					if (savedCoefficients === null) {
+						coefficients = await loader(getCurrent)
+					} else {
+						coefficients = await getCurrent()
+					}
 
 					if (!coefficients) {
-						return
+						throw new Error('Unexpected server error')
 					}
 
 					setCoefficients(coefficients)
 				} catch (e: any) {
 					toast({
-						title:
-							'Не удалось получить коэффициенты для расчета стоимости 3D печати',
+						title: 'Не удалось получить коэффициенты для расчета стоимости 3D печати',
 						description: e.message,
 					})
 				}

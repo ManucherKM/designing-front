@@ -6,9 +6,9 @@ import { useLoader } from './useLoader'
 
 export const useFetchModelingCoefficients = () => {
 	try {
-		const [coefficients, setCoefficients] = useState<
-			IModelingCoefficients | undefined
-		>()
+		const savedCoefficients = useModelingStore(store => store.coefficients)
+
+		const [coefficients, setCoefficients] = useState<IModelingCoefficients | undefined>()
 
 		const getCurrent = useModelingStore(store => store.getCurrent)
 
@@ -19,17 +19,22 @@ export const useFetchModelingCoefficients = () => {
 		useEffect(() => {
 			const fetchCoefficients = async () => {
 				try {
-					const coefficients = await loader(getCurrent)
+					let coefficients
+
+					if (savedCoefficients === null) {
+						coefficients = await loader(getCurrent)
+					} else {
+						coefficients = await getCurrent()
+					}
 
 					if (!coefficients) {
-						return
+						throw new Error('Unexpected server error')
 					}
 
 					setCoefficients(coefficients)
 				} catch (e: any) {
 					toast({
-						title:
-							'Не удалось получить коэффициенты для расчета стоимости моделирования',
+						title: 'Не удалось получить коэффициенты для расчета стоимости моделирования',
 						description: e.message,
 					})
 				}

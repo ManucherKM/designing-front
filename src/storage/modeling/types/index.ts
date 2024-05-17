@@ -1,4 +1,5 @@
 export interface IModelingStore {
+	coefficients: IModelingCoefficients | null
 	getCurrent(): Promise<IModelingCoefficients | undefined>
 }
 

@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { useFetchDesigningCoefficients } from '@/hooks/'
 import { TypographyH2 } from './typography-h2'
 import { Checkbox } from './ui/checkbox'
 import { Input } from './ui/input'
@@ -14,6 +15,8 @@ import {
 } from './ui/select'
 
 export const Designing = () => {
+	const coefficients = useFetchDesigningCoefficients()
+
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>

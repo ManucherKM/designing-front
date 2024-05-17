@@ -1,16 +1,16 @@
 import { useToast } from '@/components/ui/use-toast'
-import { useScaningStore } from '@/storage'
-import { IScanningCoefficients } from '@/storage/scaning/types'
+import { useDesigningStore } from '@/storage'
+import { IDesigningCoefficients } from '@/storage/designing/types'
 import { useEffect, useState } from 'react'
 import { useLoader } from './useLoader'
 
-export const useFetchScaningCoefficients = () => {
+export const useFetchDesigningCoefficients = () => {
 	try {
 		const [coefficients, setCoefficients] = useState<
-			IScanningCoefficients | undefined
+			IDesigningCoefficients | undefined
 		>()
 
-		const getCurrent = useScaningStore(store => store.getCurrent)
+		const getCurrent = useDesigningStore(store => store.getCurrent)
 
 		const { toast } = useToast()
 
@@ -29,7 +29,7 @@ export const useFetchScaningCoefficients = () => {
 				} catch (e: any) {
 					toast({
 						title:
-							'Не удалось получить коэффициенты для расчета стоимости сканирования',
+							'Не удалось получить коэффициенты для расчета стоимости 3D печати',
 						description: e.message,
 					})
 				}

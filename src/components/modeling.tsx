@@ -17,9 +17,16 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
+import { useFetchModelingCoefficients } from '@/hooks'
+import { useEffect } from 'react'
 import { Checkbox } from './ui/checkbox'
 
 export const Modeling = () => {
+	const coefficients = useFetchModelingCoefficients()
+
+	useEffect(() => {
+		console.log(coefficients)
+	}, [coefficients])
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>

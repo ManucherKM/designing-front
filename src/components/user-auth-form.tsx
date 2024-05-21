@@ -74,7 +74,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
 		setShowLoginDialog(false)
 
-		navigate(ERoutes.designing)
+		navigate(ERoutes.scaning)
 	}
 
 	return (

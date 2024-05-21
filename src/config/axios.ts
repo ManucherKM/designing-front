@@ -39,6 +39,8 @@ instance.interceptors.response.use(
 				return instance.request(originalRequest)
 			} catch (e) {
 				console.error(e)
+
+				useAuthStore.getState().reset()
 			}
 		}
 

@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Admin, Home } from '@/pages'
+import { Designing, Home, Modeling, Scaning } from '@/pages'
 
 export interface IRoute {
 	path: string
@@ -10,8 +10,9 @@ export interface IRoute {
 
 export enum ERoutes {
 	home = '/',
-
-	admin = '/admin',
+	designing = '/admin/designing',
+	modeling = '/admin/modeling',
+	scaning = '/admin/scaning',
 }
 
 export const publicRoutes: IRoute[] = [
@@ -23,7 +24,15 @@ export const publicRoutes: IRoute[] = [
 
 export const privateRoutes: IRoute[] = [
 	{
-		path: ERoutes.admin,
-		component: Admin,
+		path: ERoutes.designing,
+		component: Designing,
+	},
+	{
+		path: ERoutes.modeling,
+		component: Modeling,
+	},
+	{
+		path: ERoutes.scaning,
+		component: Scaning,
 	},
 ]

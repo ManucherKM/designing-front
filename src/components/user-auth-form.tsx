@@ -61,8 +61,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 				description: 'Возможно вы указали неверный логин или пароль',
 			})
 
+			setIsLoading(false)
 			return
 		}
+
+		setIsLoading(false)
 
 		toast({
 			title: 'Авторизация прошла успешно',
@@ -71,7 +74,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
 		setShowLoginDialog(false)
 
-		navigate(ERoutes.admin)
+		navigate(ERoutes.designing)
 	}
 
 	return (

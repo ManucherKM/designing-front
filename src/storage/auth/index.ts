@@ -6,7 +6,6 @@ import { history } from '@/config/history'
 import { ERoutes } from '@/config/routes'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { useStore } from '../loader'
 
 const CLIENT_URL = env.get('CLIENT_URL').required().asString()
 
@@ -47,9 +46,8 @@ export const useAuthStore = create(
 						return false
 					}
 
-					useStore.getState().reset()
-
 					get().reset()
+					console.log(123)
 
 					return true
 				} catch (e) {

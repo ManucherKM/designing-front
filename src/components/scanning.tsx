@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useCalculateCostScaning, useFetchScaningCoefficients } from '@/hooks'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Input } from './ui/input'
@@ -46,9 +46,6 @@ export const Scanning = () => {
 
 	const cost = useCalculateCostScaning(form)
 
-	useEffect(() => {
-		console.log(cost)
-	}, [cost])
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>

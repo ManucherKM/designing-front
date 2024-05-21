@@ -1,23 +1,27 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
-
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { ERoutes } from '@/config/routes'
 import { useLoader } from '@/hooks'
 import { cn } from '@/lib/utils'
-import { useAuthStore } from '@/storage'
+import { useAuthStore, useLoginDialogStore } from '@/storage'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { HTMLAttributes, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
+import * as z from 'zod'
 import { Button } from './ui/button'
 import { useToast } from './ui/use-toast'
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+	const setShowLoginDialog = useLoginDialogStore(store => store.setShow)
 	const passwordLabelRef = useRef<HTMLLabelElement | null>(null)
 	const loginButtonRef = useRef<HTMLButtonElement | null>(null)
 
 	const login = useAuthStore(store => store.login)
+
+	const navigate = useNavigate()
 
 	const loader = useLoader()
 
@@ -64,6 +68,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 			title: 'Авторизация прошла успешно',
 			description: 'Функционал администратора разблокирован',
 		})
+
+		setShowLoginDialog(false)
+
+		navigate(ERoutes.admin)
 	}
 
 	return (

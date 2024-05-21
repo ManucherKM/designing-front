@@ -1,17 +1,19 @@
-import { Command } from './components/command'
+import { Toaster } from '@/components/ui/toaster'
+import { AppRouter } from './components/app-router'
+import { CustomRouter } from './components/custom-router'
 import { LoaderProvider } from './components/loader-provider'
-import { Tabs } from './components/tabs'
 import { ThemeProvider } from './components/theme-provider'
-import { Toaster } from './components/ui/toaster'
+import { history } from './config/history'
 
 export const App = () => {
 	return (
-		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			<LoaderProvider>
-				<Tabs />
-				<Command />
-				<Toaster />
-			</LoaderProvider>
-		</ThemeProvider>
+		<CustomRouter history={history}>
+			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+				<LoaderProvider>
+					<Toaster />
+					<AppRouter />
+				</LoaderProvider>
+			</ThemeProvider>
+		</CustomRouter>
 	)
 }

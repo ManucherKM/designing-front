@@ -7,7 +7,6 @@ export interface ILoaderProvider {
 }
 
 export const LoaderProvider: FC<ILoaderProvider> = ({ children }) => {
-	// Loading state.
 	const isLoading = useStore(store => store.isLoading)
 
 	return (

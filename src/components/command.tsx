@@ -8,12 +8,13 @@ import {
 	CommandItem,
 	CommandList,
 } from '@/components/ui/command'
+import { useLoginDialogStore } from '@/storage'
 import { useEffect, useState } from 'react'
-import { AdminDialog } from './admin-dialog'
 
 export const Command = () => {
 	const [open, setOpen] = useState(false)
-	const [openAdminDialog, setOpenAdminDialog] = useState(false)
+
+	const setShowLoginDialog = useLoginDialogStore(store => store.setShow)
 
 	useEffect(() => {
 		const down = (e: KeyboardEvent) => {
@@ -33,18 +34,11 @@ export const Command = () => {
 			<CommandList>
 				<CommandEmpty>Ничего не найдено.</CommandEmpty>
 				<CommandGroup heading="Возможности">
-					<CommandItem>
-						<AdminDialog
-							open={openAdminDialog}
-							onOpenChange={open => {
-								setOpenAdminDialog(open)
-							}}
-						>
-							<div className="flex w-full">
-								<UserCog className="mr-2 h-4 w-4" />
-								<span>Админка</span>
-							</div>
-						</AdminDialog>
+					<CommandItem onSelect={() => setShowLoginDialog(true)}>
+						<div className="flex w-full">
+							<UserCog className="mr-2 h-4 w-4" />
+							<span>Админка</span>
+						</div>
 					</CommandItem>
 					<CommandItem onSelect={() => location.reload()}>
 						<RotateCcw className="mr-2 h-4 w-4" />

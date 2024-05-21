@@ -6,18 +6,10 @@ export interface ILoginTarget {
 	password: string
 }
 
-export interface IRegistrationTarget {
-	email: string
-
-	password: string
-}
-
 export interface IAuthStore {
 	token: Token
 
 	login: (loginDto: ILoginTarget) => Promise<boolean>
-
-	registration: (registrationDto: IRegistrationTarget) => Promise<boolean>
 
 	getNewAccessToken: () => Promise<boolean>
 

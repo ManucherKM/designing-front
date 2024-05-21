@@ -38,24 +38,6 @@ export const useAuthStore = create(
 					return false
 				}
 			},
-			async registration(registrationDto) {
-				try {
-					const { data } = await axios.post<{ success: boolean }>(
-						'auth/registration',
-						registrationDto,
-					)
-
-					if (!data?.success) {
-						return false
-					}
-
-					return true
-				} catch (e) {
-					console.error(e)
-
-					return false
-				}
-			},
 
 			async logout() {
 				try {

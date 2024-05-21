@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useFetchDesigningCoefficients } from '@/hooks/'
+import { useCalculateCostDesigning } from '@/hooks/useCalculateCostDesigning'
+import { useEffect, useState } from 'react'
 import { TypographyH2 } from './typography-h2'
+import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
@@ -14,8 +17,42 @@ import {
 	SelectValue,
 } from './ui/select'
 
+export type TGeometryComplexity = 'Простая' | 'Средняя' | 'Сложная'
+
+export type TTechnology = 'fdm' | 'Фотополимер'
+
+export type TAssignment = 'Макет' | 'Художественное' | 'Техническое'
+
+export interface IDesigningFormData {
+	length: string
+	width: string
+	height: string
+	geometryComplexity: TGeometryComplexity
+	technology: TTechnology
+	assignment: TAssignment
+	postprocessing: boolean
+}
+
+const defaultForm: IDesigningFormData = {
+	length: '',
+	width: '',
+	height: '',
+	geometryComplexity: 'Простая',
+	assignment: 'Макет',
+	technology: 'fdm',
+	postprocessing: false,
+}
+
 export const Designing = () => {
 	const coefficients = useFetchDesigningCoefficients()
+
+	const [form, setForm] = useState<IDesigningFormData>(defaultForm)
+
+	const cost = useCalculateCostDesigning(form)
+
+	useEffect(() => {
+		console.log(form)
+	}, [form])
 
 	return (
 		<Card className="w-full">
@@ -27,15 +64,42 @@ export const Designing = () => {
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="length">Длина, мм</Label>
-								<Input type="text" id="length" placeholder="142" />
+								<Input
+									type="text"
+									id="length"
+									placeholder="142"
+									value={form.length}
+									onChange={e => {
+										const value = e.target.value.replace(/\D/g, '')
+										setForm(prev => ({ ...prev, length: value }))
+									}}
+								/>
 							</div>
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="width">Ширина, мм</Label>
-								<Input type="text" id="width" placeholder="95" />
+								<Input
+									type="text"
+									id="width"
+									placeholder="95"
+									value={form.width}
+									onChange={e => {
+										const value = e.target.value.replace(/\D/g, '')
+										setForm(prev => ({ ...prev, width: value }))
+									}}
+								/>
 							</div>
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="height">Высота, мм</Label>
-								<Input type="text" id="height" placeholder="21" />
+								<Input
+									type="text"
+									id="height"
+									placeholder="21"
+									value={form.height}
+									onChange={e => {
+										const value = e.target.value.replace(/\D/g, '')
+										setForm(prev => ({ ...prev, height: value }))
+									}}
+								/>
 							</div>
 						</div>
 					</div>
@@ -45,7 +109,15 @@ export const Designing = () => {
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
 								<Label>Сложность геометрии</Label>
-								<Select defaultValue="easy">
+								<Select
+									value={form.geometryComplexity}
+									onValueChange={value => {
+										setForm(prev => ({
+											...prev,
+											geometryComplexity: value as TGeometryComplexity,
+										}))
+									}}
+								>
 									<SelectTrigger>
 										<SelectValue placeholder="Выберите значение" />
 									</SelectTrigger>
@@ -61,7 +133,16 @@ export const Designing = () => {
 							<div className="w-full grid grid-cols-2 gap-2">
 								<div className="flex flex-col gap-2">
 									<Label>Технология</Label>
-									<Select defaultValue="fdm">
+									<Select
+										value={form.technology}
+										defaultValue={form.technology}
+										onValueChange={value => {
+											setForm(prev => ({
+												...prev,
+												technology: value as TTechnology,
+											}))
+										}}
+									>
 										<SelectTrigger>
 											<SelectValue placeholder="Выберите значение" />
 										</SelectTrigger>
@@ -77,7 +158,16 @@ export const Designing = () => {
 								</div>
 								<div className="flex flex-col gap-2">
 									<Label>Назначение</Label>
-									<Select defaultValue="layout">
+									<Select
+										value={form.assignment}
+										defaultValue={form.assignment}
+										onValueChange={value => {
+											setForm(prev => ({
+												...prev,
+												assignment: value as TAssignment,
+											}))
+										}}
+									>
 										<SelectTrigger>
 											<SelectValue placeholder="Выберите значение" />
 										</SelectTrigger>
@@ -96,7 +186,16 @@ export const Designing = () => {
 								<Label>Ещё</Label>
 								<div className="flex h-9">
 									<div className="flex gap-2 items-center">
-										<Checkbox id="post-processing" />
+										<Checkbox
+											id="post-processing"
+											checked={form.postprocessing}
+											onCheckedChange={value => {
+												setForm(prev => ({
+													...prev,
+													postprocessing: value as boolean,
+												}))
+											}}
+										/>
 										<Label htmlFor="post-processing">Постобработка</Label>
 									</div>
 								</div>
@@ -106,9 +205,15 @@ export const Designing = () => {
 					<div className="flex flex-col">
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
-							<TypographyH2 className="text-center border-none">
-								9 300 ₽
-							</TypographyH2>
+							{cost === undefined ? (
+								<TypographyH3 className="text-center border-none">
+									Введите данные для расчета стоимости
+								</TypographyH3>
+							) : (
+								<TypographyH2 className="text-center border-none">
+									{cost} ₽
+								</TypographyH2>
+							)}
 						</div>
 					</div>
 				</div>

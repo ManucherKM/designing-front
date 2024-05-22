@@ -40,17 +40,17 @@ export const useCalculateCostModeling = (data: IModelingFormData) => {
 
 		// Коэфицент подготовки документации
 		if (data.docs) {
-			totalCost += 500
+			totalCost += coefficients.design_documentation
 		}
 
 		// Коэфицент анимации
 		if (data.animation) {
-			totalCost += 500
+			totalCost += coefficients.animation
 		}
 
 		// Коэфицент визуализации
 		if (data.visualization) {
-			totalCost += 500
+			totalCost += coefficients.visualization
 		}
 
 		setCost(totalCost)

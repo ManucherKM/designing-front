@@ -1,9 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useCalculateCostScaning, useFetchScaningCoefficients } from '@/hooks'
-import { useEffectSkipFirstRender } from '@/hooks/useEffectSkipFirstRender'
 import { useResultDialogStore } from '@/storage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Input } from './ui/input'
@@ -16,6 +15,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from './ui/select'
+import { toast } from './ui/use-toast'
 
 export type TGeometryComplexity = 'Простая' | 'Средняя' | 'Сложная'
 
@@ -41,13 +41,6 @@ const defaultForm: IScanningFormData = {
 	scanningAccuracy: '0.1',
 }
 
-// Максимальные размеры модельки в миллиметрах
-const maxSizes = {
-	length: 200,
-	width: 200,
-	height: 200,
-}
-
 export const Scanning = () => {
 	useFetchScaningCoefficients()
 
@@ -65,7 +58,7 @@ export const Scanning = () => {
 		setForm(defaultForm)
 	}
 
-	useEffectSkipFirstRender(() => {
+	useEffect(() => {
 		setScanning(form)
 	}, [form])
 	return (
@@ -77,7 +70,7 @@ export const Scanning = () => {
 						<span className="text-center">Размеры детали</span>
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="length">Длина, мм (макс. 200)</Label>
+								<Label htmlFor="length">Длина, мм</Label>
 								<Input
 									type="number"
 									id="length"
@@ -86,14 +79,27 @@ export const Scanning = () => {
 									onChange={e => {
 										const value = e.target.value
 
-										if (+value <= maxSizes.length) {
-											setForm(prev => ({ ...prev, length: value }))
+										if (+value > 200) {
+											setForm(prev => ({
+												...prev,
+												length: value,
+												geometryComplexity: 'Сложная',
+											}))
+
+											toast({
+												title: 'Сложность геометрии изменена',
+												description:
+													'Модель, размеры которой превышают 200 миллиметров имеет сложную геометрию.',
+											})
+											return
 										}
+
+										setForm(prev => ({ ...prev, length: value }))
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="width">Ширина, мм (макс. 200)</Label>
+								<Label htmlFor="width">Ширина, мм</Label>
 								<Input
 									type="number"
 									id="width"
@@ -102,14 +108,27 @@ export const Scanning = () => {
 									onChange={e => {
 										const value = e.target.value
 
-										if (+value <= maxSizes.width) {
-											setForm(prev => ({ ...prev, width: value }))
+										if (+value > 200) {
+											setForm(prev => ({
+												...prev,
+												width: value,
+												geometryComplexity: 'Сложная',
+											}))
+
+											toast({
+												title: 'Сложность геометрии изменена',
+												description:
+													'Модель, размеры которой превышают 200 миллиметров имеет сложную геометрию.',
+											})
+											return
 										}
+
+										setForm(prev => ({ ...prev, width: value }))
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="height">Высота, мм (макс. 200)</Label>
+								<Label htmlFor="height">Высота, мм</Label>
 								<Input
 									type="number"
 									id="height"
@@ -118,9 +137,22 @@ export const Scanning = () => {
 									onChange={e => {
 										const value = e.target.value
 
-										if (+value <= maxSizes.height) {
-											setForm(prev => ({ ...prev, height: value }))
+										if (+value > 200) {
+											setForm(prev => ({
+												...prev,
+												height: value,
+												geometryComplexity: 'Сложная',
+											}))
+
+											toast({
+												title: 'Сложность геометрии изменена',
+												description:
+													'Модель, размеры которой превышают 200 миллиметров имеет сложную геометрию.',
+											})
+											return
 										}
+
+										setForm(prev => ({ ...prev, height: value }))
 									}}
 								/>
 							</div>

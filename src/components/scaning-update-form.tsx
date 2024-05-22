@@ -1,32 +1,48 @@
 import { useUpdateScaning } from '@/hooks'
 import { useScaningStore } from '@/storage'
-import { TUpdateScaningData } from '@/storage/scaning/types'
+import { convertObjStrValsToNum } from '@/utils/convertObjStrValsToNum'
 import { Label } from '@radix-ui/react-label'
 import { useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
+export interface TUpdateScaning {
+	geometry_complexity: {
+		easy: string
+		normal: string
+		hard: string
+	}
+	surface: {
+		matte: string
+		brilliant: string
+	}
+	scanning_accuracy: {
+		'0.1': string
+		'0.063': string
+	}
+}
+
 export const ScaningUpdateForm = () => {
 	const coefficients = useScaningStore(store => store.coefficients)
 
-	const defaultForm: TUpdateScaningData = {
+	const defaultForm: TUpdateScaning = {
 		geometry_complexity: {
-			easy: coefficients?.geometry_complexity.easy,
-			normal: coefficients?.geometry_complexity.normal,
-			hard: coefficients?.geometry_complexity.hard,
+			easy: coefficients?.geometry_complexity.easy.toString() || '',
+			normal: coefficients?.geometry_complexity.normal.toString() || '',
+			hard: coefficients?.geometry_complexity.hard.toString() || '',
 		},
 		surface: {
-			matte: coefficients?.surface.matte,
-			brilliant: coefficients?.surface.brilliant,
+			matte: coefficients?.surface.matte.toString() || '',
+			brilliant: coefficients?.surface.brilliant.toString() || '',
 		},
 		scanning_accuracy: {
-			'0.1': coefficients?.scanning_accuracy['0.1'],
-			'0.063': coefficients?.scanning_accuracy['0.063'],
+			'0.1': coefficients?.scanning_accuracy['0.1'].toString() || '',
+			'0.063': coefficients?.scanning_accuracy['0.063'].toString() || '',
 		},
 	}
 
-	const [form, setForm] = useState<TUpdateScaningData>(defaultForm)
+	const [form, setForm] = useState<TUpdateScaning>(defaultForm)
 
 	const update = useUpdateScaning()
 
@@ -35,7 +51,7 @@ export const ScaningUpdateForm = () => {
 			return
 		}
 
-		update(coefficients._id, form)
+		update(coefficients._id, convertObjStrValsToNum(form))
 	}
 
 	function reset() {
@@ -59,7 +75,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										easy: +e.target.value,
+										easy: e.target.value,
 									},
 								}))
 							}}
@@ -77,7 +93,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										normal: +e.target.value,
+										normal: e.target.value,
 									},
 								}))
 							}}
@@ -95,7 +111,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										hard: +e.target.value,
+										hard: e.target.value,
 									},
 								}))
 							}}
@@ -116,7 +132,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									surface: {
 										...prev.surface,
-										matte: +e.target.value,
+										matte: e.target.value,
 									},
 								}))
 							}}
@@ -134,7 +150,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									surface: {
 										...prev.surface,
-										brilliant: +e.target.value,
+										brilliant: e.target.value,
 									},
 								}))
 							}}
@@ -156,7 +172,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									scanning_accuracy: {
 										...prev.scanning_accuracy,
-										'0.1': +e.target.value,
+										'0.1': e.target.value,
 									},
 								}))
 							}}
@@ -174,7 +190,7 @@ export const ScaningUpdateForm = () => {
 									...prev,
 									scanning_accuracy: {
 										...prev.scanning_accuracy,
-										'0.063': +e.target.value,
+										'0.063': e.target.value,
 									},
 								}))
 							}}

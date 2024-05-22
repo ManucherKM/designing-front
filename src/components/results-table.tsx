@@ -1,5 +1,6 @@
 import {
 	TableBody,
+	TableCaption,
 	TableCell,
 	TableFooter,
 	TableHead,
@@ -67,6 +68,12 @@ export const Table = () => {
 	}, [scanningCost, designingCost, modelingCost])
 	return (
 		<UITable>
+			<TableCaption>
+				Результаты подсчетов в данном калькуляторе носят информационный характер
+				и ни при каких условиях{' '}
+				<span className="underline"> не являются публичной офертой</span>,
+				определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
+			</TableCaption>
 			<TableHeader>
 				<TableRow>
 					<TableHead>Услуга</TableHead>

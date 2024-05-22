@@ -17,13 +17,13 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useCalculateCostModeling, useFetchModelingCoefficients } from '@/hooks'
-import { useEffectSkipFirstRender } from '@/hooks/useEffectSkipFirstRender'
 import { useResultDialogStore } from '@/storage'
 import { compareObj } from '@/utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
 import { Input } from './ui/input'
+import { useToast } from './ui/use-toast'
 
 export type TGeometryComplexity = 'Простая' | 'Средняя' | 'Сложная'
 
@@ -53,13 +53,6 @@ const defaultForm: IModelingFormData = {
 	changed: false,
 }
 
-// Максимальные размеры модельки в миллиметрах
-const maxSizes = {
-	length: 200,
-	width: 200,
-	height: 200,
-}
-
 export const Modeling = () => {
 	useFetchModelingCoefficients()
 
@@ -69,6 +62,8 @@ export const Modeling = () => {
 
 	const setModeling = useResultDialogStore(store => store.setModeling)
 
+	const { toast } = useToast()
+
 	const [form, setForm] = useState<IModelingFormData>(savedData || defaultForm)
 
 	const cost = useCalculateCostModeling(form)
@@ -77,7 +72,7 @@ export const Modeling = () => {
 		setForm(defaultForm)
 	}
 
-	useEffectSkipFirstRender(() => {
+	useEffect(() => {
 		const isEquals = compareObj(form, defaultForm)
 
 		if (!isEquals && !form.changed) {
@@ -85,7 +80,7 @@ export const Modeling = () => {
 		}
 	}, [form])
 
-	useEffectSkipFirstRender(() => {
+	useEffect(() => {
 		setModeling(form)
 	}, [form])
 	return (
@@ -97,7 +92,7 @@ export const Modeling = () => {
 						<span className="text-center">Размеры детали</span>
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="length">Длина, мм (макс. 200)</Label>
+								<Label htmlFor="length">Длина, мм</Label>
 								<Input
 									type="number"
 									id="length"
@@ -106,14 +101,27 @@ export const Modeling = () => {
 									onChange={e => {
 										const value = e.target.value
 
-										if (+value <= maxSizes.length) {
-											setForm(prev => ({ ...prev, length: value }))
+										if (+value > 200) {
+											setForm(prev => ({
+												...prev,
+												length: value,
+												geometryComplexity: 'Сложная',
+											}))
+
+											toast({
+												title: 'Сложность геометрии изменена',
+												description:
+													'Модель, размеры которой превышают 200 миллиметров имеет сложную геометрию.',
+											})
+											return
 										}
+
+										setForm(prev => ({ ...prev, length: value }))
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="width">Ширина, мм (макс. 200)</Label>
+								<Label htmlFor="width">Ширина, мм</Label>
 								<Input
 									type="number"
 									id="width"
@@ -122,14 +130,27 @@ export const Modeling = () => {
 									onChange={e => {
 										const value = e.target.value
 
-										if (+value <= maxSizes.width) {
-											setForm(prev => ({ ...prev, width: value }))
+										if (+value > 200) {
+											setForm(prev => ({
+												...prev,
+												width: value,
+												geometryComplexity: 'Сложная',
+											}))
+
+											toast({
+												title: 'Сложность геометрии изменена',
+												description:
+													'Модель, размеры которой превышают 200 миллиметров имеет сложную геометрию.',
+											})
+											return
 										}
+
+										setForm(prev => ({ ...prev, width: value }))
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="height">Высота, мм (макс. 200)</Label>
+								<Label htmlFor="height">Высота, мм</Label>
 								<Input
 									type="number"
 									id="height"
@@ -138,9 +159,22 @@ export const Modeling = () => {
 									onChange={e => {
 										const value = e.target.value
 
-										if (+value <= maxSizes.height) {
-											setForm(prev => ({ ...prev, height: value }))
+										if (+value > 200) {
+											setForm(prev => ({
+												...prev,
+												height: value,
+												geometryComplexity: 'Сложная',
+											}))
+
+											toast({
+												title: 'Сложность геометрии изменена',
+												description:
+													'Модель, размеры которой превышают 200 миллиметров имеет сложную геометрию.',
+											})
+											return
 										}
+
+										setForm(prev => ({ ...prev, height: value }))
 									}}
 								/>
 							</div>

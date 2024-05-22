@@ -1,34 +1,60 @@
 import { useUpdateDesigning } from '@/hooks/useUpdateDesigning'
 import { useDesigningStore } from '@/storage'
-import { TUpdateDesigningData } from '@/storage/designing/types'
+import { convertObjStrValsToNum } from '@/utils/convertObjStrValsToNum'
 import { Label } from '@radix-ui/react-label'
 import { useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
+export interface TUpdateDesigning {
+	geometry_complexity: {
+		easy: string
+		normal: string
+		hard: string
+	}
+	technology: {
+		fdm: string
+		photopolymer: string
+	}
+	assignment: {
+		layout: string
+		artistic: string
+		technical: string
+	}
+	postprocessing: {
+		easy: string
+		normal: string
+		hard: string
+	}
+}
+
 export const DesigningUpdateForm = () => {
 	const coefficients = useDesigningStore(store => store.coefficients)
 
-	const defaultForm: TUpdateDesigningData = {
+	const defaultForm: TUpdateDesigning = {
 		geometry_complexity: {
-			easy: coefficients?.geometry_complexity.easy,
-			normal: coefficients?.geometry_complexity.normal,
-			hard: coefficients?.geometry_complexity.hard,
+			easy: coefficients?.geometry_complexity.easy.toString() || '',
+			normal: coefficients?.geometry_complexity.normal.toString() || '',
+			hard: coefficients?.geometry_complexity.hard.toString() || '',
 		},
 		technology: {
-			fdm: coefficients?.technology.fdm,
-			photopolymer: coefficients?.technology.photopolymer,
+			fdm: coefficients?.technology.fdm.toString() || '',
+			photopolymer: coefficients?.technology.photopolymer.toString() || '',
 		},
 		assignment: {
-			artistic: coefficients?.assignment?.artistic,
-			layout: coefficients?.assignment?.layout,
-			technical: coefficients?.assignment?.technical,
+			artistic: coefficients?.assignment?.artistic.toString() || '',
+			layout: coefficients?.assignment?.layout.toString() || '',
+			technical: coefficients?.assignment?.technical.toString() || '',
 		},
-		postprocessing: coefficients?.postprocessing,
+		postprocessing: {
+			easy: coefficients?.postprocessing.easy.toString() || '',
+			hard: coefficients?.postprocessing.hard.toString() || '',
+			normal: coefficients?.postprocessing.normal.toString() || '',
+		},
 	}
 
-	const [form, setForm] = useState<TUpdateDesigningData>(defaultForm)
+	const [form, setForm] = useState<TUpdateDesigning>(defaultForm)
 
 	const update = useUpdateDesigning()
 
@@ -37,7 +63,7 @@ export const DesigningUpdateForm = () => {
 			return
 		}
 
-		update(coefficients._id, form)
+		update(coefficients._id, convertObjStrValsToNum(form))
 	}
 
 	function reset() {
@@ -60,7 +86,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										easy: +e.target.value,
+										easy: e.target.value,
 									},
 								}))
 							}}
@@ -78,7 +104,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										normal: +e.target.value,
+										normal: e.target.value,
 									},
 								}))
 							}}
@@ -96,7 +122,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										hard: +e.target.value,
+										hard: e.target.value,
 									},
 								}))
 							}}
@@ -117,7 +143,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									technology: {
 										...prev.technology,
-										fdm: +e.target.value,
+										fdm: e.target.value,
 									},
 								}))
 							}}
@@ -135,7 +161,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									technology: {
 										...prev.technology,
-										photopolymer: +e.target.value,
+										photopolymer: e.target.value,
 									},
 								}))
 							}}
@@ -156,7 +182,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									assignment: {
 										...prev.assignment,
-										layout: +e.target.value,
+										layout: e.target.value,
 									},
 								}))
 							}}
@@ -174,7 +200,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									assignment: {
 										...prev.assignment,
-										artistic: +e.target.value,
+										artistic: e.target.value,
 									},
 								}))
 							}}
@@ -193,7 +219,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									assignment: {
 										...prev.assignment,
-										technical: +e.target.value,
+										technical: e.target.value,
 									},
 								}))
 							}}
@@ -214,7 +240,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									postprocessing: {
 										...prev.postprocessing,
-										easy: +e.target.value,
+										easy: e.target.value,
 									},
 								}))
 							}}
@@ -232,7 +258,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									postprocessing: {
 										...prev.postprocessing,
-										normal: +e.target.value,
+										normal: e.target.value,
 									},
 								}))
 							}}
@@ -251,7 +277,7 @@ export const DesigningUpdateForm = () => {
 									...prev,
 									postprocessing: {
 										...prev.postprocessing,
-										hard: +e.target.value,
+										hard: e.target.value,
 									},
 								}))
 							}}

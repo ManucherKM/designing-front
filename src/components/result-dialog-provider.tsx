@@ -1,7 +1,6 @@
 import {
 	Dialog,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 } from '@/components/ui/dialog'
@@ -26,12 +25,6 @@ export const ResultDialogProvider: FC<IResultDialog> = ({ children }) => {
 						<DialogTitle className="text-left">
 							Предварительные результаты
 						</DialogTitle>
-						<DialogDescription className="text-justify !mt-3">
-							Результаты подсчетов в данном калькуляторе носят информационный
-							характер и ни при каких условиях{' '}
-							<span className="underline"> не являются публичной офертой</span>,
-							определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
-						</DialogDescription>
 					</DialogHeader>
 					<div>
 						<Table />

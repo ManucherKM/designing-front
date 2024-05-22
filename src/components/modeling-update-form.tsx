@@ -1,31 +1,46 @@
 import { useUpdateModeling } from '@/hooks/useUpdateModeling'
 import { useModelingStore } from '@/storage'
-import { TUpdateModelingData } from '@/storage/modeling/types'
+import { convertObjStrValsToNum } from '@/utils/convertObjStrValsToNum'
 import { Label } from '@radix-ui/react-label'
 import { useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
+export interface IUpdateModeling {
+	geometry_complexity: {
+		easy: string
+		normal: string
+		hard: string
+	}
+	model_type: {
+		artistic: string
+		engineer: string
+	}
+	design_documentation: string
+	visualization: string
+	animation: string
+}
+
 export const ModelingUpdateForm = () => {
 	const coefficients = useModelingStore(store => store.coefficients)
 
-	const defaultForm: TUpdateModelingData = {
+	const defaultForm: IUpdateModeling = {
 		geometry_complexity: {
-			easy: coefficients?.geometry_complexity.easy,
-			normal: coefficients?.geometry_complexity.normal,
-			hard: coefficients?.geometry_complexity.hard,
+			easy: coefficients?.geometry_complexity.easy.toString() || '',
+			normal: coefficients?.geometry_complexity.normal.toString() || '',
+			hard: coefficients?.geometry_complexity.hard.toString() || '',
 		},
 		model_type: {
-			artistic: coefficients?.model_type.artistic,
-			engineer: coefficients?.model_type.engineer,
+			artistic: coefficients?.model_type.artistic.toString() || '',
+			engineer: coefficients?.model_type.engineer.toString() || '',
 		},
-		animation: coefficients?.animation,
-		design_documentation: coefficients?.design_documentation,
-		visualization: coefficients?.visualization,
+		animation: coefficients?.animation.toString() || '',
+		design_documentation: coefficients?.design_documentation.toString() || '',
+		visualization: coefficients?.visualization.toString() || '',
 	}
 
-	const [form, setForm] = useState<TUpdateModelingData>(defaultForm)
+	const [form, setForm] = useState<IUpdateModeling>(defaultForm)
 
 	const update = useUpdateModeling()
 
@@ -34,7 +49,7 @@ export const ModelingUpdateForm = () => {
 			return
 		}
 
-		update(coefficients._id, form)
+		update(coefficients._id, convertObjStrValsToNum(form))
 	}
 
 	function reset() {
@@ -57,7 +72,7 @@ export const ModelingUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										easy: +e.target.value,
+										easy: e.target.value,
 									},
 								}))
 							}}
@@ -75,7 +90,7 @@ export const ModelingUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										normal: +e.target.value,
+										normal: e.target.value,
 									},
 								}))
 							}}
@@ -93,7 +108,7 @@ export const ModelingUpdateForm = () => {
 									...prev,
 									geometry_complexity: {
 										...prev.geometry_complexity,
-										hard: +e.target.value,
+										hard: e.target.value,
 									},
 								}))
 							}}
@@ -114,7 +129,7 @@ export const ModelingUpdateForm = () => {
 									...prev,
 									model_type: {
 										...prev.model_type,
-										artistic: +e.target.value,
+										artistic: e.target.value,
 									},
 								}))
 							}}
@@ -132,7 +147,7 @@ export const ModelingUpdateForm = () => {
 									...prev,
 									model_type: {
 										...prev.model_type,
-										engineer: +e.target.value,
+										engineer: e.target.value,
 									},
 								}))
 							}}
@@ -154,7 +169,7 @@ export const ModelingUpdateForm = () => {
 							onChange={e => {
 								setForm(prev => ({
 									...prev,
-									design_documentation: +e.target.value,
+									design_documentation: e.target.value,
 								}))
 							}}
 						/>
@@ -169,7 +184,7 @@ export const ModelingUpdateForm = () => {
 							onChange={e => {
 								setForm(prev => ({
 									...prev,
-									visualization: +e.target.value,
+									visualization: e.target.value,
 								}))
 							}}
 						/>
@@ -184,7 +199,7 @@ export const ModelingUpdateForm = () => {
 							onChange={e => {
 								setForm(prev => ({
 									...prev,
-									animation: +e.target.value,
+									animation: e.target.value,
 								}))
 							}}
 						/>

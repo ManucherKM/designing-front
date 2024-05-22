@@ -4,7 +4,7 @@ import { Tabs } from '@/components/tabs'
 export const Home = () => {
 	return (
 		<>
-			<Tabs defaultTab="modeling" />
+			<Tabs />
 			<Command />
 		</>
 	)

@@ -47,7 +47,6 @@ export const useAuthStore = create(
 					}
 
 					get().reset()
-					console.log(123)
 
 					return true
 				} catch (e) {

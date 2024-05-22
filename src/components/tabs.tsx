@@ -5,6 +5,7 @@ import {
 	Tabs as UiTabs,
 } from '@/components/ui/tabs'
 import { FC, ReactNode } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Designing } from './designing'
 import { List } from './list'
 import { Modeling } from './modeling'
@@ -41,13 +42,16 @@ export const tabList: ITabListItem[] = [
 ]
 
 export interface ITabs {
-	defaultTab: `${ETabListItemValues}`
+	defaultTab?: `${ETabListItemValues}`
 }
 
 export const Tabs: FC<ITabs> = ({ defaultTab }) => {
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const tab = searchParams.get('tab')
 	return (
 		<div className="max-w-[1250px] mx-auto p-10 ph_lg:p-4">
-			<UiTabs defaultValue={defaultTab}>
+			<UiTabs defaultValue={tab || defaultTab || ETabListItemValues.scanning}>
 				<TabsList
 					className="grid w-full"
 					style={{
@@ -57,7 +61,16 @@ export const Tabs: FC<ITabs> = ({ defaultTab }) => {
 					<List
 						arr={tabList}
 						callback={tab => (
-							<TabsTrigger key={'tab-' + tab.value} value={tab.value}>
+							<TabsTrigger
+								key={'tab-' + tab.value}
+								value={tab.value}
+								onClick={() => {
+									setSearchParams(params => {
+										params.set('tab', tab.value)
+										return params
+									})
+								}}
+							>
 								{tab.text}
 							</TabsTrigger>
 						)}

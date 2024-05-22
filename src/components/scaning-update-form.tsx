@@ -1,37 +1,16 @@
 import { useUpdateScaning } from '@/hooks'
 import { useScaningStore } from '@/storage'
+import { TUpdateScaningData } from '@/storage/scaning/types'
 import { Label } from '@radix-ui/react-label'
 import { useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
-export type TGeometryComplexity = 'Простая' | 'Средняя' | 'Сложная'
-
-export type TSurface = 'Блестящая' | 'Матовая'
-
-export type TScanningAccuracy = '0.1' | '0.063'
-
-export interface IScanningFormData {
-	geometry_complexity?: {
-		easy?: number
-		normal?: number
-		hard?: number
-	}
-	surface?: {
-		matte?: number
-		brilliant?: number
-	}
-	scanning_accuracy?: {
-		'0.1'?: number
-		'0.063'?: number
-	}
-}
-
 export const ScaningUpdateForm = () => {
 	const coefficients = useScaningStore(store => store.coefficients)
 
-	const defaultForm: IScanningFormData = {
+	const defaultForm: TUpdateScaningData = {
 		geometry_complexity: {
 			easy: coefficients?.geometry_complexity.easy,
 			normal: coefficients?.geometry_complexity.normal,
@@ -47,7 +26,7 @@ export const ScaningUpdateForm = () => {
 		},
 	}
 
-	const [form, setForm] = useState<IScanningFormData>(defaultForm)
+	const [form, setForm] = useState<TUpdateScaningData>(defaultForm)
 
 	const update = useUpdateScaning()
 

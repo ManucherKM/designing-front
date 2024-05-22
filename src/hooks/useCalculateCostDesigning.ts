@@ -55,15 +55,14 @@ export const useCalculateCostDesigning = (data: IDesigningFormData) => {
 			totalCost *= coefficients.assignment.layout
 		}
 
-		// ЗАМЕНИТЬ НА ДАННЫЕ ИЗ АПИ
 		// Коэфицент постобработки
 		if (data.postprocessing) {
 			if (data.geometryComplexity === 'Простая') {
-				totalCost += 100
+				totalCost += coefficients.postprocessing.easy
 			} else if (data.geometryComplexity === 'Средняя') {
-				totalCost += 200
+				totalCost += coefficients.postprocessing.normal
 			} else {
-				totalCost += 300
+				totalCost += coefficients.postprocessing.hard
 			}
 		}
 

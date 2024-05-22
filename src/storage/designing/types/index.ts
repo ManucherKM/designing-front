@@ -1,6 +1,17 @@
+import { RecursivePartial } from '@/storage/types'
+
+export type TUpdateDesigningData = Omit<
+	RecursivePartial<IDesigningCoefficients>,
+	'_id'
+>
+
 export interface IDesigningStore {
 	coefficients: IDesigningCoefficients | null
 	getCurrent(): Promise<IDesigningCoefficients | undefined>
+	update(
+		id: string,
+		target: TUpdateDesigningData,
+	): Promise<TUpdateDesigningData | undefined>
 }
 
 export interface IDesigningCoefficients {
@@ -19,5 +30,9 @@ export interface IDesigningCoefficients {
 		artistic: number
 		technical: number
 	}
-	postprocessing: number
+	postprocessing: {
+		easy: number
+		normal: number
+		hard: number
+	}
 }

@@ -11,7 +11,7 @@ export interface IDesigningStore {
 	update(
 		id: string,
 		target: TUpdateDesigningData,
-	): Promise<TUpdateDesigningData | undefined>
+	): Promise<IDesigningCoefficients | undefined>
 }
 
 export interface IDesigningCoefficients {

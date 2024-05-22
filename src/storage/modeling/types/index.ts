@@ -1,6 +1,17 @@
+import { RecursivePartial } from '@/storage/types'
+
+export type TUpdateModelingData = Omit<
+	RecursivePartial<IModelingCoefficients>,
+	'_id'
+>
+
 export interface IModelingStore {
 	coefficients: IModelingCoefficients | null
 	getCurrent(): Promise<IModelingCoefficients | undefined>
+	update(
+		id: string,
+		target: TUpdateModelingData,
+	): Promise<IModelingCoefficients | undefined>
 }
 
 export interface IModelingCoefficients {

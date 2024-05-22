@@ -4,6 +4,7 @@ export interface IDesigningStore {
 }
 
 export interface IDesigningCoefficients {
+	_id: string
 	geometry_complexity: {
 		easy: number
 		normal: number

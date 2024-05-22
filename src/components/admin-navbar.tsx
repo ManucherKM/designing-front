@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/navigation-menu'
 import { ERoutes } from '@/config/routes'
 import { useLoader } from '@/hooks'
+import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/storage'
 import { LogOut } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -59,7 +60,7 @@ export function AdminNavbar() {
 				</NavigationMenuItem>
 				<NavigationMenuItem>
 					<NavigationMenuLink
-						className={navigationMenuTriggerStyle()}
+						className={cn(navigationMenuTriggerStyle(), 'cursor-pointer')}
 						onClick={logoutHandler}
 					>
 						<LogOut className="w-5 " />

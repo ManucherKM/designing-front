@@ -4,6 +4,7 @@ export interface IScaningStore {
 }
 
 export interface IScanningCoefficients {
+	_id: string
 	geometry_complexity: {
 		easy: number
 		normal: number

@@ -71,12 +71,12 @@ export const Designing = () => {
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="length">Длина, мм (макс. 200)</Label>
 								<Input
-									type="text"
+									type="number"
 									id="length"
 									placeholder="142"
 									value={form.length}
 									onChange={e => {
-										const value = e.target.value.replace(/\D/g, '')
+										const value = e.target.value
 
 										if (+value <= maxSizes.length) {
 											setForm(prev => ({ ...prev, length: value }))
@@ -87,12 +87,12 @@ export const Designing = () => {
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="width">Ширина, мм (макс. 200)</Label>
 								<Input
-									type="text"
+									type="number"
 									id="width"
 									placeholder="95"
 									value={form.width}
 									onChange={e => {
-										const value = e.target.value.replace(/\D/g, '')
+										const value = e.target.value
 
 										if (+value <= maxSizes.width) {
 											setForm(prev => ({ ...prev, width: value }))
@@ -103,12 +103,12 @@ export const Designing = () => {
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="height">Высота, мм (макс. 200)</Label>
 								<Input
-									type="text"
+									type="number"
 									id="height"
 									placeholder="21"
 									value={form.height}
 									onChange={e => {
-										const value = e.target.value.replace(/\D/g, '')
+										const value = e.target.value
 
 										if (+value <= maxSizes.height) {
 											setForm(prev => ({ ...prev, height: value }))

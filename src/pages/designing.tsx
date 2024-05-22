@@ -1,6 +1,6 @@
 export const Designing = () => {
 	return (
-		<div className="p-6">
+		<div className="max-w-[1250px] mx-auto">
 			<div>designing</div>
 		</div>
 	)

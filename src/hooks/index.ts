@@ -1,5 +1,6 @@
 export * from './useCalculateCostModeling'
 export * from './useCalculateCostScaning'
+export * from './useDeviceSize'
 export * from './useFetchDesigningCoefficients'
 export * from './useFetchModelingCoefficients'
 export * from './useFetchScaningCoefficients'

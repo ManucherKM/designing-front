@@ -43,6 +43,13 @@ const defaultForm: IDesigningFormData = {
 	postprocessing: false,
 }
 
+// Максимальные размеры модельки в миллиметрах
+const maxSizes = {
+	length: 200,
+	width: 200,
+	height: 200,
+}
+
 export const Designing = () => {
 	useFetchDesigningCoefficients()
 
@@ -62,7 +69,7 @@ export const Designing = () => {
 						<span className="text-center">Размеры детали</span>
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="length">Длина, мм</Label>
+								<Label htmlFor="length">Длина, мм (макс. 200)</Label>
 								<Input
 									type="text"
 									id="length"
@@ -70,12 +77,15 @@ export const Designing = () => {
 									value={form.length}
 									onChange={e => {
 										const value = e.target.value.replace(/\D/g, '')
-										setForm(prev => ({ ...prev, length: value }))
+
+										if (+value <= maxSizes.length) {
+											setForm(prev => ({ ...prev, length: value }))
+										}
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="width">Ширина, мм</Label>
+								<Label htmlFor="width">Ширина, мм (макс. 200)</Label>
 								<Input
 									type="text"
 									id="width"
@@ -83,12 +93,15 @@ export const Designing = () => {
 									value={form.width}
 									onChange={e => {
 										const value = e.target.value.replace(/\D/g, '')
-										setForm(prev => ({ ...prev, width: value }))
+
+										if (+value <= maxSizes.width) {
+											setForm(prev => ({ ...prev, width: value }))
+										}
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="height">Высота, мм</Label>
+								<Label htmlFor="height">Высота, мм (макс. 200)</Label>
 								<Input
 									type="text"
 									id="height"
@@ -96,7 +109,10 @@ export const Designing = () => {
 									value={form.height}
 									onChange={e => {
 										const value = e.target.value.replace(/\D/g, '')
-										setForm(prev => ({ ...prev, height: value }))
+
+										if (+value <= maxSizes.height) {
+											setForm(prev => ({ ...prev, height: value }))
+										}
 									}}
 								/>
 							</div>

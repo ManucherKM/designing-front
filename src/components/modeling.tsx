@@ -77,7 +77,7 @@ export const Modeling = () => {
 						<span className="text-center">Размеры детали</span>
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="length">Длина, мм</Label>
+								<Label htmlFor="length">Длина, мм (макс. 200)</Label>
 								<Input
 									type="text"
 									id="length"
@@ -90,7 +90,7 @@ export const Modeling = () => {
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="width">Ширина, мм</Label>
+								<Label htmlFor="width">Ширина, мм (макс. 200)</Label>
 								<Input
 									type="text"
 									id="width"
@@ -103,7 +103,7 @@ export const Modeling = () => {
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
-								<Label htmlFor="height">Высота, мм</Label>
+								<Label htmlFor="height">Высота, мм (макс. 200)</Label>
 								<Input
 									type="text"
 									id="height"

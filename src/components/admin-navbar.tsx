@@ -36,7 +36,7 @@ export function AdminNavbar() {
 		navigate(ERoutes.home)
 	}
 	return (
-		<NavigationMenu className="max-w-[1250px] my-5 mx-auto flex justify-end">
+		<NavigationMenu className="max-w-[1250px] px-4 my-5 mx-auto flex justify-end">
 			<NavigationMenuList className="ml-auto">
 				<NavigationMenuItem>
 					<Link to={ERoutes.scaning} className={navigationMenuTriggerStyle()}>

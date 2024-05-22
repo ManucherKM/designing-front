@@ -226,7 +226,7 @@ export const Designing = () => {
 							</div>
 						</div>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col ph_lg:h-40">
 						<span className="text-center">Стоимость</span>
 						<div className="h-full flex justify-center items-center">
 							{cost === undefined ? (

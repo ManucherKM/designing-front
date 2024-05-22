@@ -43,8 +43,8 @@ export const ScaningUpdateForm = () => {
 	}
 
 	return (
-		<div>
-			<div className="grid grid-cols-2 gap-10">
+		<div className="pb-5">
+			<div className="grid grid-cols-2 gap-10 ph_lg:grid-cols-1">
 				<div className="flex flex-col gap-5">
 					<TypographyH3>Сложность геометрии</TypographyH3>
 					<div className="flex flex-col gap-2">

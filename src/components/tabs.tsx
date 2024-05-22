@@ -50,7 +50,7 @@ export const Tabs: FC<ITabs> = ({ defaultTab }) => {
 
 	const tab = searchParams.get('tab')
 	return (
-		<div className="max-w-[1250px] mx-auto p-10 ph_lg:p-4">
+		<div className="max-w-[1250px] px-4 mx-auto p-10 ph_lg:p-4">
 			<UiTabs defaultValue={tab || defaultTab || ETabListItemValues.scanning}>
 				<TabsList
 					className="grid w-full"

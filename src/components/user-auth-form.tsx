@@ -84,7 +84,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 					<Label htmlFor="email">Почта</Label>
 					<Input
 						id="email"
-						placeholder="Ваша почта"
 						type="email"
 						autoCapitalize="none"
 						autoComplete="email"
@@ -107,7 +106,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 					</Label>
 					<Input
 						id="password"
-						placeholder="Ваш пароль"
 						type="password"
 						autoCapitalize="none"
 						autoComplete="password"

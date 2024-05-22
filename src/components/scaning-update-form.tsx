@@ -68,7 +68,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="geometry_complexity.easy"
 							type="number"
-							placeholder="10"
 							value={form.geometry_complexity?.easy || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -86,7 +85,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="geometry_complexity.normal"
 							type="number"
-							placeholder="12.5"
 							value={form.geometry_complexity?.normal || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -104,7 +102,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="geometry_complexity.hard"
 							type="number"
-							placeholder="11"
 							value={form.geometry_complexity?.hard || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -125,7 +122,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="surface.matte"
 							type="number"
-							placeholder="5"
 							value={form.surface?.matte || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -143,7 +139,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="surface.brilliant"
 							type="number"
-							placeholder="7"
 							value={form.surface?.brilliant || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -165,7 +160,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="scanning_accuracy?.['0.1']"
 							type="number"
-							placeholder="2"
 							value={form.scanning_accuracy?.['0.1'] || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -183,7 +177,6 @@ export const ScaningUpdateForm = () => {
 						<Input
 							id="scanning_accuracy?.['0.063']"
 							type="number"
-							placeholder="9"
 							value={form.scanning_accuracy?.['0.063'] || ''}
 							onChange={e => {
 								setForm(prev => ({

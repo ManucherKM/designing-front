@@ -79,7 +79,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="geometry_complexity.easy"
 							type="number"
-							placeholder="10"
 							value={form.geometry_complexity?.easy || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -97,7 +96,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="geometry_complexity.normal"
 							type="number"
-							placeholder="12.5"
 							value={form.geometry_complexity?.normal || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -115,7 +113,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="geometry_complexity.hard"
 							type="number"
-							placeholder="11"
 							value={form.geometry_complexity?.hard || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -136,7 +133,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="technology.fdm"
 							type="number"
-							placeholder="1.5"
 							value={form.technology?.fdm || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -154,7 +150,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="technology.photopolymer"
 							type="number"
-							placeholder="0.5"
 							value={form.technology?.photopolymer || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -175,7 +170,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="assignment.layout"
 							type="number"
-							placeholder="2.5"
 							value={form.assignment?.layout || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -193,7 +187,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="assignment.artistic"
 							type="number"
-							placeholder="20"
 							value={form.assignment?.artistic || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -212,7 +205,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="assignment.technical"
 							type="number"
-							placeholder="41"
 							value={form.assignment?.technical || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -233,7 +225,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="postprocessing.easy"
 							type="number"
-							placeholder="2.5"
 							value={form.postprocessing?.easy || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -251,7 +242,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="postprocessing.normal"
 							type="number"
-							placeholder="20"
 							value={form.postprocessing?.normal || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -270,7 +260,6 @@ export const DesigningUpdateForm = () => {
 						<Input
 							id="postprocessing.hard"
 							type="number"
-							placeholder="41"
 							value={form.postprocessing?.hard || ''}
 							onChange={e => {
 								setForm(prev => ({

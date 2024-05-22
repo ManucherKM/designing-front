@@ -65,7 +65,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="geometry_complexity.easy"
 							type="number"
-							placeholder="10"
 							value={form.geometry_complexity?.easy || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -83,7 +82,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="geometry_complexity.normal"
 							type="number"
-							placeholder="12.5"
 							value={form.geometry_complexity?.normal || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -101,7 +99,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="geometry_complexity.hard"
 							type="number"
-							placeholder="11"
 							value={form.geometry_complexity?.hard || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -122,7 +119,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="model_type.artistic"
 							type="number"
-							placeholder="1.5"
 							value={form.model_type?.artistic || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -140,7 +136,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="model_type.engineer"
 							type="number"
-							placeholder="1.5"
 							value={form.model_type?.engineer || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -164,7 +159,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="design_documentation"
 							type="number"
-							placeholder="1.5"
 							value={form.design_documentation || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -179,7 +173,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="visualization"
 							type="number"
-							placeholder="1.5"
 							value={form.visualization || ''}
 							onChange={e => {
 								setForm(prev => ({
@@ -194,7 +187,6 @@ export const ModelingUpdateForm = () => {
 						<Input
 							id="animation"
 							type="number"
-							placeholder="1.5"
 							value={form.animation || ''}
 							onChange={e => {
 								setForm(prev => ({

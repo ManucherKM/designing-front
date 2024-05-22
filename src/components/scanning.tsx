@@ -74,7 +74,6 @@ export const Scanning = () => {
 								<Input
 									type="number"
 									id="length"
-									placeholder="142"
 									value={form.length}
 									onChange={e => {
 										const value = e.target.value
@@ -103,7 +102,6 @@ export const Scanning = () => {
 								<Input
 									type="number"
 									id="width"
-									placeholder="95"
 									value={form.width}
 									onChange={e => {
 										const value = e.target.value
@@ -132,7 +130,6 @@ export const Scanning = () => {
 								<Input
 									type="number"
 									id="height"
-									placeholder="21"
 									value={form.height}
 									onChange={e => {
 										const value = e.target.value

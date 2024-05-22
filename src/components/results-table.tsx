@@ -48,7 +48,6 @@ export const Table = () => {
 	]
 
 	useEffect(() => {
-		console.log(scanningCost, designingCost, modelingCost)
 		let cost = 0
 
 		if (scanningCost) {

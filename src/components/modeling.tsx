@@ -17,9 +17,10 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useCalculateCostModeling, useFetchModelingCoefficients } from '@/hooks'
+import { useEffectSkipFirstRender } from '@/hooks/useEffectSkipFirstRender'
 import { useResultDialogStore } from '@/storage'
 import { compareObj } from '@/utils'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
 import { Input } from './ui/input'
@@ -76,7 +77,7 @@ export const Modeling = () => {
 		setForm(defaultForm)
 	}
 
-	useEffect(() => {
+	useEffectSkipFirstRender(() => {
 		const isEquals = compareObj(form, defaultForm)
 
 		if (!isEquals && !form.changed) {
@@ -84,7 +85,7 @@ export const Modeling = () => {
 		}
 	}, [form])
 
-	useEffect(() => {
+	useEffectSkipFirstRender(() => {
 		setModeling(form)
 	}, [form])
 	return (

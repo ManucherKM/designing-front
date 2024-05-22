@@ -10,6 +10,7 @@ import {
 import { useCalculateCostModeling, useCalculateCostScaning } from '@/hooks'
 import { useCalculateCostDesigning } from '@/hooks/useCalculateCostDesigning'
 import { useResultDialogStore } from '@/storage'
+import { getNumberWithSpaces } from '@/utils'
 import { useEffect, useState } from 'react'
 import { IDesigningFormData } from './designing'
 import { IModelingFormData } from './modeling'
@@ -51,15 +52,15 @@ export const Table = () => {
 		let cost = 0
 
 		if (scanningCost) {
-			cost += +scanningCost
+			cost += +scanningCost.split(' ').join('')
 		}
 
 		if (designingCost) {
-			cost += +designingCost
+			cost += +designingCost.split(' ').join('')
 		}
 
 		if (modelingCost) {
-			cost += +modelingCost
+			cost += +modelingCost.split(' ').join('')
 		}
 
 		setCost(cost)
@@ -83,7 +84,9 @@ export const Table = () => {
 			<TableFooter>
 				<TableRow>
 					<TableCell colSpan={1}>Итого</TableCell>
-					<TableCell className="text-right">{cost}</TableCell>
+					<TableCell className="text-right">
+						{getNumberWithSpaces(cost)}
+					</TableCell>
 				</TableRow>
 			</TableFooter>
 		</UITable>

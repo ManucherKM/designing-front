@@ -2,8 +2,9 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useFetchDesigningCoefficients } from '@/hooks/'
 import { useCalculateCostDesigning } from '@/hooks/useCalculateCostDesigning'
+import { useEffectSkipFirstRender } from '@/hooks/useEffectSkipFirstRender'
 import { useResultDialogStore } from '@/storage'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
@@ -68,7 +69,7 @@ export const Designing = () => {
 		setForm(defaultForm)
 	}
 
-	useEffect(() => {
+	useEffectSkipFirstRender(() => {
 		setDesigning(form)
 	}, [form])
 	return (

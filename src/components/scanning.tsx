@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useCalculateCostScaning, useFetchScaningCoefficients } from '@/hooks'
+import { useEffectSkipFirstRender } from '@/hooks/useEffectSkipFirstRender'
 import { useResultDialogStore } from '@/storage'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Input } from './ui/input'
@@ -53,6 +54,7 @@ export const Scanning = () => {
 	const savedData = useResultDialogStore(store => store.scanningData)
 
 	const setShow = useResultDialogStore(store => store.setShow)
+
 	const setScanning = useResultDialogStore(store => store.setScanning)
 
 	const [form, setForm] = useState<IScanningFormData>(savedData || defaultForm)
@@ -63,7 +65,7 @@ export const Scanning = () => {
 		setForm(defaultForm)
 	}
 
-	useEffect(() => {
+	useEffectSkipFirstRender(() => {
 		setScanning(form)
 	}, [form])
 	return (

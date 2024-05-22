@@ -46,6 +46,10 @@ export const Scanning = () => {
 
 	const cost = useCalculateCostScaning(form)
 
+	function reset() {
+		setForm(defaultForm)
+	}
+
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>
@@ -183,9 +187,10 @@ export const Scanning = () => {
 				</div>
 			</CardContent>
 			<CardFooter className="flex justify-between">
-				<Button variant="outline">Сбросить</Button>
+				<Button variant="outline" onClick={reset}>
+					Сбросить
+				</Button>
 				<div className="flex gap-2">
-					<Button variant="secondary">Добавить</Button>
 					<Button>Расчитать</Button>
 				</div>
 			</CardFooter>

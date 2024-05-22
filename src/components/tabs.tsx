@@ -4,7 +4,7 @@ import {
 	TabsTrigger,
 	Tabs as UiTabs,
 } from '@/components/ui/tabs'
-import { ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 import { Designing } from './designing'
 import { List } from './list'
 import { Modeling } from './modeling'
@@ -40,10 +40,14 @@ export const tabList: ITabListItem[] = [
 	},
 ]
 
-export const Tabs = () => {
+export interface ITabs {
+	defaultTab: `${ETabListItemValues}`
+}
+
+export const Tabs: FC<ITabs> = ({ defaultTab }) => {
 	return (
 		<div className="max-w-[1250px] mx-auto p-10 ph_lg:p-4">
-			<UiTabs defaultValue="scanning">
+			<UiTabs defaultValue={defaultTab}>
 				<TabsList
 					className="grid w-full"
 					style={{

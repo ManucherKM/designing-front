@@ -14,6 +14,7 @@ export const useCalculateCostScaning = (data: IScanningFormData) => {
 		}
 
 		if (!data.length.length || !data.height.length || !data.width.length) {
+			setCost(undefined)
 			return
 		}
 

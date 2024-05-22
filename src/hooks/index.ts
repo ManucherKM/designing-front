@@ -1,3 +1,4 @@
+export * from './useCalculateCostModeling'
 export * from './useCalculateCostScaning'
 export * from './useFetchDesigningCoefficients'
 export * from './useFetchModelingCoefficients'

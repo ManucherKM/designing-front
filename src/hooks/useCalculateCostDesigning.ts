@@ -14,10 +14,60 @@ export const useCalculateCostDesigning = (data: IDesigningFormData) => {
 		}
 
 		if (!data.length.length || !data.height.length || !data.width.length) {
+			setCost(undefined)
 			return
 		}
 
-		setCost(0)
+		// Объем
+		const volume = +data.width * +data.height * +data.length
+
+		// Масса в граммах
+		const m = volume * 0.00125 // <- 0.00125 - это плотность материала в мм
+
+		// Стоимость самого материала
+		const materialCost = m * 5 // <- 5 - это стоимость 1 грамма материла
+
+		// Итоговая стоимость
+		let totalCost = materialCost
+
+		// Коэфицент сложности геометрии
+		if (data.geometryComplexity === 'Простая') {
+			totalCost += coefficients.geometry_complexity.easy
+		} else if (data.geometryComplexity === 'Средняя') {
+			totalCost += coefficients.geometry_complexity.normal
+		} else {
+			totalCost += coefficients.geometry_complexity.hard
+		}
+
+		// Коэфицент выбранной технологии
+		if (data.technology === 'FDM') {
+			totalCost += coefficients.technology.fdm
+		} else {
+			totalCost += coefficients.technology.photopolymer
+		}
+
+		// Коэфицент выбранного назначения
+		if (data.assignment === 'Техническое') {
+			totalCost *= coefficients.assignment.technical
+		} else if (data.assignment === 'Художественное') {
+			totalCost *= coefficients.assignment.artistic
+		} else {
+			totalCost *= coefficients.assignment.layout
+		}
+
+		// ЗАМЕНИТЬ НА ДАННЫЕ ИЗ АПИ
+		// Коэфицент постобработки
+		if (data.postprocessing) {
+			if (data.geometryComplexity === 'Простая') {
+				totalCost += 100
+			} else if (data.geometryComplexity === 'Средняя') {
+				totalCost += 200
+			} else {
+				totalCost += 300
+			}
+		}
+
+		setCost(totalCost)
 	}, [data, coefficients])
 
 	if (!cost) return

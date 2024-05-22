@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useFetchDesigningCoefficients } from '@/hooks/'
 import { useCalculateCostDesigning } from '@/hooks/useCalculateCostDesigning'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
@@ -19,7 +19,7 @@ import {
 
 export type TGeometryComplexity = 'Простая' | 'Средняя' | 'Сложная'
 
-export type TTechnology = 'fdm' | 'Фотополимер'
+export type TTechnology = 'FDM' | 'Фотополимер'
 
 export type TAssignment = 'Макет' | 'Художественное' | 'Техническое'
 
@@ -39,21 +39,20 @@ const defaultForm: IDesigningFormData = {
 	height: '',
 	geometryComplexity: 'Простая',
 	assignment: 'Макет',
-	technology: 'fdm',
+	technology: 'FDM',
 	postprocessing: false,
 }
 
 export const Designing = () => {
-	const coefficients = useFetchDesigningCoefficients()
+	useFetchDesigningCoefficients()
 
 	const [form, setForm] = useState<IDesigningFormData>(defaultForm)
 
 	const cost = useCalculateCostDesigning(form)
 
-	useEffect(() => {
-		console.log(form)
-	}, [form])
-
+	function reset() {
+		setForm(defaultForm)
+	}
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>
@@ -123,9 +122,9 @@ export const Designing = () => {
 									</SelectTrigger>
 									<SelectContent>
 										<SelectGroup>
-											<SelectItem value="easy">Простая</SelectItem>
-											<SelectItem value="normal">Средняя</SelectItem>
-											<SelectItem value="difficult">Сложная</SelectItem>
+											<SelectItem value="Простая">Простая</SelectItem>
+											<SelectItem value="Средняя">Средняя</SelectItem>
+											<SelectItem value="Сложная">Сложная</SelectItem>
 										</SelectGroup>
 									</SelectContent>
 								</Select>
@@ -148,10 +147,8 @@ export const Designing = () => {
 										</SelectTrigger>
 										<SelectContent>
 											<SelectGroup>
-												<SelectItem value="fdm">FDM</SelectItem>
-												<SelectItem value="photopolymer">
-													Фотополимер
-												</SelectItem>
+												<SelectItem value="FDM">FDM</SelectItem>
+												<SelectItem value="Фотополимер">Фотополимер</SelectItem>
 											</SelectGroup>
 										</SelectContent>
 									</Select>
@@ -173,9 +170,11 @@ export const Designing = () => {
 										</SelectTrigger>
 										<SelectContent>
 											<SelectGroup>
-												<SelectItem value="layout">Макет</SelectItem>
-												<SelectItem value="artistic">Художественное</SelectItem>
-												<SelectItem value="technical">Техническое</SelectItem>
+												<SelectItem value="Макет">Макет</SelectItem>
+												<SelectItem value="Художественное">
+													Художественное
+												</SelectItem>
+												<SelectItem value="Техническое">Техническое</SelectItem>
 											</SelectGroup>
 										</SelectContent>
 									</Select>
@@ -219,9 +218,10 @@ export const Designing = () => {
 				</div>
 			</CardContent>
 			<CardFooter className="flex justify-between">
-				<Button variant="outline">Сбросить</Button>
+				<Button variant="outline" onClick={reset}>
+					Сбросить
+				</Button>
 				<div className="flex gap-2">
-					<Button variant="secondary">Добавить</Button>
 					<Button>Расчитать</Button>
 				</div>
 			</CardFooter>

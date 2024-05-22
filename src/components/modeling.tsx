@@ -21,6 +21,7 @@ import { compareObj } from '@/utils'
 import { useEffect, useState } from 'react'
 import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
+import { Input } from './ui/input'
 
 export type TGeometryComplexity = 'Простая' | 'Средняя' | 'Сложная'
 
@@ -50,6 +51,13 @@ const defaultForm: IModelingFormData = {
 	changed: false,
 }
 
+// Максимальные размеры модельки в миллиметрах
+const maxSizes = {
+	length: 200,
+	width: 200,
+	height: 200,
+}
+
 export const Modeling = () => {
 	useFetchModelingCoefficients()
 
@@ -72,51 +80,60 @@ export const Modeling = () => {
 		<Card className="w-full">
 			<CardHeader></CardHeader>
 			<CardContent>
-				<div className="grid w-full grid-cols-2 gap-5 ph_lg:grid-cols-none">
-					{/* <div className="flex flex-col">
+				<div className="grid w-full grid-cols-3 gap-5 ph_lg:grid-cols-none">
+					<div className="flex flex-col">
 						<span className="text-center">Размеры детали</span>
 						<div className="flex flex-col gap-5 mt-5">
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="length">Длина, мм (макс. 200)</Label>
 								<Input
-									type="text"
+									type="number"
 									id="length"
 									placeholder="142"
 									value={form.length}
 									onChange={e => {
-										const value = e.target.value.replace(/\D/g, '')
-										setForm(prev => ({ ...prev, length: value }))
+										const value = e.target.value
+
+										if (+value <= maxSizes.length) {
+											setForm(prev => ({ ...prev, length: value }))
+										}
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="width">Ширина, мм (макс. 200)</Label>
 								<Input
-									type="text"
+									type="number"
 									id="width"
 									placeholder="95"
 									value={form.width}
 									onChange={e => {
-										const value = e.target.value.replace(/\D/g, '')
-										setForm(prev => ({ ...prev, width: value }))
+										const value = e.target.value
+
+										if (+value <= maxSizes.width) {
+											setForm(prev => ({ ...prev, width: value }))
+										}
 									}}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="height">Высота, мм (макс. 200)</Label>
 								<Input
-									type="text"
+									type="number"
 									id="height"
 									placeholder="21"
 									value={form.height}
 									onChange={e => {
-										const value = e.target.value.replace(/\D/g, '')
-										setForm(prev => ({ ...prev, height: value }))
+										const value = e.target.value
+
+										if (+value <= maxSizes.height) {
+											setForm(prev => ({ ...prev, height: value }))
+										}
 									}}
 								/>
 							</div>
 						</div>
-					</div> */}
+					</div>
 					<div className="flex flex-col">
 						<span className="text-center">Дополнительно</span>
 

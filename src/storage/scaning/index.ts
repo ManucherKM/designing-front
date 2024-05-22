@@ -22,6 +22,24 @@ export const useScaningStore = create(
 					throw new Error(e)
 				}
 			},
+			async update(id: string, target) {
+				try {
+					const { data } = await axios.patch<IScanningCoefficients>(
+						`scaning/${id}`,
+						target,
+					)
+
+					if (Object.keys(data).length === 0 || !data) {
+						return
+					}
+
+					set(prev => ({ ...prev, coefficients: data }))
+
+					return data
+				} catch (e: any) {
+					throw new Error(e)
+				}
+			},
 		}),
 		{
 			name: 'scaning-store',

@@ -50,10 +50,12 @@ const maxSizes = {
 export const Scanning = () => {
 	useFetchScaningCoefficients()
 
+	const savedData = useResultDialogStore(store => store.scanningData)
+
 	const setShow = useResultDialogStore(store => store.setShow)
 	const setScanning = useResultDialogStore(store => store.setScanning)
 
-	const [form, setForm] = useState<IScanningFormData>(defaultForm)
+	const [form, setForm] = useState<IScanningFormData>(savedData || defaultForm)
 
 	const cost = useCalculateCostScaning(form)
 

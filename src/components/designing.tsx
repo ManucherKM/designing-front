@@ -54,11 +54,13 @@ const maxSizes = {
 export const Designing = () => {
 	useFetchDesigningCoefficients()
 
+	const savedData = useResultDialogStore(store => store.designingData)
+
 	const setShow = useResultDialogStore(store => store.setShow)
 
 	const setDesigning = useResultDialogStore(store => store.setDesigning)
 
-	const [form, setForm] = useState<IDesigningFormData>(defaultForm)
+	const [form, setForm] = useState<IDesigningFormData>(savedData || defaultForm)
 
 	const cost = useCalculateCostDesigning(form)
 

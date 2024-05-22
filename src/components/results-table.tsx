@@ -10,36 +10,61 @@ import {
 import { useCalculateCostModeling, useCalculateCostScaning } from '@/hooks'
 import { useCalculateCostDesigning } from '@/hooks/useCalculateCostDesigning'
 import { useResultDialogStore } from '@/storage'
+import { useEffect, useState } from 'react'
 import { IDesigningFormData } from './designing'
 import { IModelingFormData } from './modeling'
 import { IScanningFormData } from './scanning'
 
 export const Table = () => {
+	const [cost, setCost] = useState(0)
+
 	const scanningData = useResultDialogStore(store => store.scanningData)
 	const designingData = useResultDialogStore(store => store.designingData)
 	const modelingData = useResultDialogStore(store => store.modelingData)
 
-	const scanningCost =
-		useCalculateCostScaning(scanningData || ({} as IScanningFormData)) || 0
-	const designingCost =
-		useCalculateCostDesigning(designingData || ({} as IDesigningFormData)) || 0
-	const modelingCost =
-		useCalculateCostModeling(modelingData || ({} as IModelingFormData)) || 0
+	const scanningCost = useCalculateCostScaning(
+		scanningData || ({} as IScanningFormData),
+	)
+	const designingCost = useCalculateCostDesigning(
+		designingData || ({} as IDesigningFormData),
+	)
+	const modelingCost = useCalculateCostModeling(
+		modelingData || ({} as IModelingFormData),
+	)
 
 	const services = [
 		{
 			name: 'Сканирование',
-			price: scanningCost,
+			price: scanningCost || 0,
 		},
 		{
 			name: '3D печать',
-			price: designingCost,
+			price: designingCost || 0,
 		},
 		{
 			name: 'Моделирование',
-			price: modelingCost,
+			price: modelingCost || 0,
 		},
 	]
+
+	useEffect(() => {
+		console.log(scanningCost, designingCost, modelingCost)
+		let cost = 0
+
+		if (scanningCost) {
+			cost += +scanningCost
+		}
+
+		if (designingCost) {
+			cost += +designingCost
+		}
+
+		if (modelingCost) {
+			cost += +modelingCost
+		}
+
+		setCost(cost)
+	}, [scanningCost, designingCost, modelingCost])
 	return (
 		<UITable>
 			<TableHeader>
@@ -59,9 +84,7 @@ export const Table = () => {
 			<TableFooter>
 				<TableRow>
 					<TableCell colSpan={1}>Итого</TableCell>
-					<TableCell className="text-right">
-						{+scanningCost + +designingCost + +modelingCost}
-					</TableCell>
+					<TableCell className="text-right">{cost}</TableCell>
 				</TableRow>
 			</TableFooter>
 		</UITable>

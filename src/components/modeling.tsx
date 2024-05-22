@@ -62,11 +62,13 @@ const maxSizes = {
 export const Modeling = () => {
 	useFetchModelingCoefficients()
 
+	const savedData = useResultDialogStore(store => store.modelingData)
+
 	const setShow = useResultDialogStore(store => store.setShow)
 
 	const setModeling = useResultDialogStore(store => store.setModeling)
 
-	const [form, setForm] = useState<IModelingFormData>(defaultForm)
+	const [form, setForm] = useState<IModelingFormData>(savedData || defaultForm)
 
 	const cost = useCalculateCostModeling(form)
 

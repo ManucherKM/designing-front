@@ -7,6 +7,8 @@ import {
 } from '@/components/ui/dialog'
 import { useResultDialogStore } from '@/storage'
 import { FC, ReactNode } from 'react'
+import { Table } from './results-table'
+import { Button } from './ui/button'
 
 export interface IResultDialog {
 	children: ReactNode
@@ -31,7 +33,10 @@ export const ResultDialogProvider: FC<IResultDialog> = ({ children }) => {
 							определяемой положениями Статьи 437(2) Гражданского кодекса РФ.
 						</DialogDescription>
 					</DialogHeader>
-					<div></div>
+					<div>
+						<Table />
+						<Button className="mt-5 w-full">Отправить заявку</Button>
+					</div>
 				</DialogContent>
 			</Dialog>
 			{children}

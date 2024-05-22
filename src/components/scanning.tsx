@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useCalculateCostScaning, useFetchScaningCoefficients } from '@/hooks'
-import { useState } from 'react'
+import { useResultDialogStore } from '@/storage'
+import { useEffect, useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Input } from './ui/input'
@@ -49,6 +50,9 @@ const maxSizes = {
 export const Scanning = () => {
 	useFetchScaningCoefficients()
 
+	const setShow = useResultDialogStore(store => store.setShow)
+	const setScanning = useResultDialogStore(store => store.setScanning)
+
 	const [form, setForm] = useState<IScanningFormData>(defaultForm)
 
 	const cost = useCalculateCostScaning(form)
@@ -57,6 +61,9 @@ export const Scanning = () => {
 		setForm(defaultForm)
 	}
 
+	useEffect(() => {
+		setScanning(form)
+	}, [form])
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>
@@ -207,7 +214,7 @@ export const Scanning = () => {
 					Сбросить
 				</Button>
 				<div className="flex gap-2">
-					<Button>Расчитать</Button>
+					<Button onClick={() => setShow(true)}>Расчитать</Button>
 				</div>
 			</CardFooter>
 		</Card>

@@ -2,7 +2,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { useFetchDesigningCoefficients } from '@/hooks/'
 import { useCalculateCostDesigning } from '@/hooks/useCalculateCostDesigning'
-import { useState } from 'react'
+import { useResultDialogStore } from '@/storage'
+import { useEffect, useState } from 'react'
 import { TypographyH2 } from './typography-h2'
 import { TypographyH3 } from './typography-h3'
 import { Checkbox } from './ui/checkbox'
@@ -53,6 +54,10 @@ const maxSizes = {
 export const Designing = () => {
 	useFetchDesigningCoefficients()
 
+	const setShow = useResultDialogStore(store => store.setShow)
+
+	const setDesigning = useResultDialogStore(store => store.setDesigning)
+
 	const [form, setForm] = useState<IDesigningFormData>(defaultForm)
 
 	const cost = useCalculateCostDesigning(form)
@@ -60,6 +65,10 @@ export const Designing = () => {
 	function reset() {
 		setForm(defaultForm)
 	}
+
+	useEffect(() => {
+		setDesigning(form)
+	}, [form])
 	return (
 		<Card className="w-full">
 			<CardHeader></CardHeader>
@@ -238,7 +247,7 @@ export const Designing = () => {
 					Сбросить
 				</Button>
 				<div className="flex gap-2">
-					<Button>Расчитать</Button>
+					<Button onClick={() => setShow(true)}>Расчитать</Button>
 				</div>
 			</CardFooter>
 		</Card>

@@ -17,6 +17,7 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useCalculateCostModeling, useFetchModelingCoefficients } from '@/hooks'
+import { useResultDialogStore } from '@/storage'
 import { compareObj } from '@/utils'
 import { useEffect, useState } from 'react'
 import { TypographyH3 } from './typography-h3'
@@ -61,6 +62,10 @@ const maxSizes = {
 export const Modeling = () => {
 	useFetchModelingCoefficients()
 
+	const setShow = useResultDialogStore(store => store.setShow)
+
+	const setModeling = useResultDialogStore(store => store.setModeling)
+
 	const [form, setForm] = useState<IModelingFormData>(defaultForm)
 
 	const cost = useCalculateCostModeling(form)
@@ -75,6 +80,10 @@ export const Modeling = () => {
 		if (!isEquals && !form.changed) {
 			setForm(prev => ({ ...prev, changed: true }))
 		}
+	}, [form])
+
+	useEffect(() => {
+		setModeling(form)
 	}, [form])
 	return (
 		<Card className="w-full">
@@ -273,7 +282,7 @@ export const Modeling = () => {
 					Сбросить
 				</Button>
 				<div className="flex gap-2">
-					<Button>Расчитать</Button>
+					<Button onClick={() => setShow(true)}>Расчитать</Button>
 				</div>
 			</CardFooter>
 		</Card>

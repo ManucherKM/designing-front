@@ -4,6 +4,7 @@ import { AppRouter } from './components/app-router'
 import { CustomRouter } from './components/custom-router'
 import { LoaderProvider } from './components/loader-provider'
 import { LoginDialogProvider } from './components/login-dialog-provider'
+import { ResultDialogProvider } from './components/result-dialog-provider'
 import { ThemeProvider } from './components/theme-provider'
 import { history } from './config/history'
 
@@ -13,10 +14,12 @@ export const App = () => {
 			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
 				<LoaderProvider>
 					<LoginDialogProvider>
-						<AdminDashboardProvider>
-							<Toaster />
-							<AppRouter />
-						</AdminDashboardProvider>
+						<ResultDialogProvider>
+							<AdminDashboardProvider>
+								<Toaster />
+								<AppRouter />
+							</AdminDashboardProvider>
+						</ResultDialogProvider>
 					</LoginDialogProvider>
 				</LoaderProvider>
 			</ThemeProvider>
